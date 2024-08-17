@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundCrack</title> 
+    <link rel="shortcut icon" href="../imgs/SoundCrack-Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/form.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+</head>
+<body>
+        <header>
+            <div class="titulo">
+                <h1>Sound</h1>
+                <h1>Crack</h1>
+            </div>
+            <ul class="nav">
+                <li><a href="./loja.html">Inicio</a></li>
+                <li><a href="./sobre.html">Sobre</a></li>
+                <li><a href="./cadastro.html">Cadastro</a></li>
+            </ul>
+            <div class="burguer">
+                <div class="fatia1"></div>
+                <div class="fatia2"></div>
+                <div class="fatia3"></div>
+            </div>
+        </header>
+        <main>
+            <form>
+                <label>
+                    <p>Nome do album</p>
+                    <input required type="text" name="nomeAlbum" id="nomeAlbum">
+                </label>
+                <label>
+                    <p>Artistas</p>
+                    <input required type="text" name="artistas" id="artistas">
+                    <p><strong>Para mais de um artista adicione "-" depois de cada um</strong></p>
+                </label>
+                <label>
+                    <p>Gênero</p>
+                    <select name="generos" id="genero">
+                        <option value="NULL"></option>
+                        <script> 
+                        let arrGen = ["pop","rock","mpb","bossa-nova","jazz","samba"]
+                        arrGen.forEach((e)=> document.write(`<option value=${e}>${e[0].toUpperCase()+e.replace(e[0],"")}</option>`))
+                    </script>
+                    </select>
+                </label>
+                <label>
+                    <p>Imagem da capa album</p>
+                    <label for="capaAlbum" class="fakeip">Click para Inserir</label>
+                    <input required type="file" accept="image/*" name="capaAlbum" pattern="(.jpeg)|(.png)|(.jpg)" id="capaAlbum">
+                </label>
+                <label>
+                    <p>Imagem estado do disco</p>
+                        <label for="disco" class="fakeip">Click para Inserir</label>
+                    <input required type="file" accept="image/*" name="disco" id="disco">
+                </label>
+                <label class="invisivel">
+                    <p>Cor do album</p>
+                    <input required type="color" value="#FF00FF" name="corDoAlbum" id="corDoAlbum">
+                </label>
+                <label>
+                    <p>Preço</p>
+                    <input required type="number" name="preco" id="preco">
+                </label>
+    
+                    <label class="botoes">
+                    <button type="submit" id="enviar">Enviar</button>
+                    </label>
+                
+                </form>
+        </main>
+        <footer>
+            <h3 > <a href="https://github.com/Eeu2005" target="_blank" rel="noopener noreferrer">&copy; Made by EU </a></h3>
+            <img src="../imgs/SoundCrack-Logo.png" alt="SoundCrack-Logo">
+        </footer>
+        <script type="module" src="../scripts/cadastro.js"></script>
+        <script src="../scripts/header.js"></script>
+        <script>
+            document.querySelectorAll("input[type='file']").forEach((i)=>{
+                i.addEventListener("change",(e)=>{
+                    i.labels[1].innerText=e.target.value.replace("C:\\fakepath\\","")
+                })
+            })
+        </script>
+</body>
+</html>

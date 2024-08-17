@@ -1,0 +1,96 @@
+
+header {
+  font-family: Circular;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  background-color: var(--background);
+  color: var(--corPrimaria);
+}
+.titulo {
+  padding: 5px 0;
+  font-family: "Ribeye";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.titulo > h1:nth-child(1) {
+  color: var(--corPrimaria);
+  font-size: 2em;
+  font-weight: 100;
+}
+.titulo > h1:nth-child(2) {
+  color: var(--corPrimaria);
+  font-size: 2.8em;
+  font-weight: 100;
+}
+.burguer {
+  display: none;
+}
+ul {
+    gap:22px;
+  list-style: none;
+  text-decoration: none;
+  display: flex;
+  width: 40%;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.5em;
+  
+}
+.nav>li{
+    transition: 0.5s ease-in-out;
+}
+.nav>li:hover{
+    scale: 1.25;
+}
+li > a {
+  text-decoration: none;
+  color: var(--corPrimaria);
+}
+@media screen and (max-width: 600px) {
+  body {
+    overflow-x: hidden;
+  }
+  .burguer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+  }
+  .burguer > div {
+    opacity: 1;
+    transition: 0.5s;
+    border-radius: 50px;
+    width: 31px;
+    height: 7px;
+    background-color: var(--corPrimaria);
+  }
+  ul {
+    width: 40%;
+    right: 0;
+    height: 50vh;
+    background-color: var(--background);
+    position: absolute;
+    transform: translateX(100%);
+    top: 12%;
+    flex-direction: column;
+    transition: 0.5s cubic-bezier(1, -0.33, 0, 1.38);
+  }
+  ul.active{
+    display: flex;
+    transform: translateX(0);
+  }
+  .burguer.active>.fatia1{
+   transform:  rotate(-45deg) translate(4px, 2px);
+  }
+   .burguer.active > .fatia3 {
+    opacity: 0;
+    transform: translateX(500%);
+   }
+        .burguer.active > .fatia2 {
+          transform:   rotate(45deg) translate(-7px, -12px);
+        }
+}

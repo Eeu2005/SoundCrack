@@ -1,0 +1,88 @@
+
+body{
+    background: linear-gradient(var(--CorAlbum), #31373f 45%);
+}
+main{
+    gap: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.musicas{
+    width: 50%;
+}
+table{
+    border-collapse: collapse;
+    padding: 15px;
+    width: 100%;
+    Box-shadow: 0px 0px 6px 3px #0000007a;
+}
+thead>tr>th{
+    color: var(--corPrimaria);
+    border-bottom: black solid 2px;
+    padding: 2px;
+}
+thead>tr>th:first-child{
+    border-right: solid 2px black;
+}
+
+tbody>tr{
+     border-bottom: solid 2px black;
+    margin-right: 50px;
+    color: var(--corPrimaria);
+    width: 50px;
+    text-align: left;
+    text-wrap:pretty;
+}
+tbody > tr:hover{
+    background-color: black;
+    
+}
+tbody>tr>th{
+    font-weight: 100;
+padding: 5px 0;
+transition: 0.2s ease-in-out;
+    cursor: pointer;
+
+}
+tbody > tr > td{
+    transition: 0.2s ease-in-out ;
+cursor: pointer;
+}
+tbody>tr>th:hover,tbody > tr > td:hover{
+    padding: 15px 0;
+}
+.capaAlbum{
+padding: 50px;
+width: 40%;
+}
+.capaAlbum>img{
+    width: 100%;
+    border-radius: 25px;
+}
+.botao{
+    text-align: center;
+    color: var(--background);
+   background-color: var(--corPrimaria);
+        outline: none;
+            border: none;
+            height: 27px;
+            width: 200px;
+            border-radius: 8px;
+            transition: 0.1s;
+}
+.botao:hover{
+    color: var(--corPrimaria);
+        background-color: var(--background);
+}
+@media screen and (max-width:1160px) {
+
+    .musicas{
+        width: 90%;
+    }
+    .capaAlbum{
+    width: 50%;
+    }
+    
+}

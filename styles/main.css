@@ -1,0 +1,66 @@
+@font-face {
+    font-family: 'Ribeye';
+    src: url("../fonts/Ribeye-Regular.ttf");
+}
+
+@font-face {
+    font-family: Circular;
+    src: url(../fonts/CircularSp-Book.woff2) format(woff2);
+
+}
+::-webkit-scrollbar {
+    width: 1px;
+    /* Largura da barra de rolagem */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #000000;
+    /* Cor de fundo da área da barra de rolagem */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    height: 5px;
+    background-color: var(--corPrimaria);
+    /* Cor do indicador da barra de rolagem */
+    border-radius: 6px;
+    /* Borda arredondada do indicador */
+  }
+  
+  /* Estilizando a barra de rolagem para o Firefox */
+  ::-moz-scrollbar {
+    width: 12px;
+    /* Largura da barra de rolagem */
+  }
+  
+  ::-moz-scrollbar-track {
+    background-color: #f1f1f1;
+    /* Cor de fundo da área da barra de rolagem */
+  }
+  
+  ::-moz-scrollbar-thumb {
+    background-color: #888;
+    /* Cor do indicador da barra de rolagem */
+    border-radius: 6px;
+    /* Borda arredondada do indicador */
+  }
+  
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  --background:#000000;
+    --corSecundaria: #004AAD;
+    --corPrimaria: #ffb11e;
+}
+body{
+  overflow-x: hidden;
+    font-family: Circular,sans-serif;
+    background: #31373f
+}
+a,a:visited{
+  color: currentColor;
+  text-decoration: none;
+}
