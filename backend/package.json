@@ -1,0 +1,32 @@
+{
+  "name": "soundcrack",
+  "author": {
+    "name": "Eeu",
+    "email": "Emanuel.dosmelo@gmial.com"
+  },
+  "description": "backend do soundcrack",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx app.ts ",
+    "watch": "tsx watch app.ts ",
+    "seed": "tsx seed.ts"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^11.0.2",
+    "@fastify/cors": "^10.0.2",
+    "@fastify/multipart": "^9.0.3",
+    "@fastify/session": "^11.1.0",
+    "@fastify/static": "^8.0.4",
+    "bcrypt": "^5.1.1",
+    "fastify": "^5.2.1",
+    "fastify-type-provider-zod": "^4.0.2",
+    "mongoose": "^8.9.5",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/busboy": "^1.5.4",
+    "@types/node": "^22.10.10",
+    "tsx": "^4.19.2"
+  }
+}

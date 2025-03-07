@@ -1,0 +1,121 @@
+[
+  {
+    "nome": "Chonny Chaos Compedium Complete",
+    "genero": "indie",
+    "preco":"80.00",
+    "artista": [
+      {
+        "nome": "Chonny Jash",
+        "imagem": "https://i.scdn.co/image/ab6761610000e5ebb413bc61ba3cdc4bcfff188a"
+      }
+    ],
+      "musicas":[
+        "Time Machine Reprise",
+        "Dream (Outro from Calamity)",
+        "Mucka Blucka (Intro to Cacophony)",
+        "Never Meant to Know",
+        "Spring and a Storm",
+        "Night",
+        "Ruler of Everything",
+        "Good Day",
+        "Just Apathy",
+        "The Heart Acoustic",
+        "Be Born",
+        "Storm and a Spring",
+        "The Mind Electric",
+        "The Soul Eclectic",
+        "The Bidding",
+        "Light",
+        "We're Gonna Win",
+        "Two Wuv",
+        "Variations on a Cloud",
+        "The Whole World & You (Outro from Cacophony)",
+        "Welcome to Tally Hall (Intro to Concord)",
+        "Banana Man",
+        "Haiku",
+        "Hidden in the Sand",
+        "Greener",
+        "Special",
+        "Taken for a Ride"
+      ],
+    "imagem": "https://i.scdn.co/image/ab67616d0000b2735011018cca4aa7091e08ae93",
+    "disco": "https://i.scdn.co/image/ab67616d0000b2735011018cca4aa7091e08ae93"
+  },{
+    "nome":"Supercombo",
+    "genero":"Rock",
+    "preco":"60.00",
+    "artista":[{
+      "nome":"Supercombo",
+      "imagem":"https://i.scdn.co/image/ab6761610000e5ebb3f80b4c25759ea6d72907b4"
+    }],
+    "disco":"https://i.scdn.co/image/ab67616d0000b27323ad7415e0d5fe197db5f321",
+    "imagem":"https://i.scdn.co/image/ab67616d0000b27323ad7415e0d5fe197db5f321",
+    "musicas":[
+      {
+        "nome": "Farol",
+        "artistas": [
+          "Supercombo"
+        ]
+      },
+      {
+        "nome": "Saudade",
+        "artistas": [
+          "Supercombo"
+        ]
+      },
+      {
+        "nome": "Gravidade",
+        "artistas": [
+          "Supercombo"
+        ]
+      },
+      {
+        "nome": "Cebolas",
+        "artistas": [
+          {
+            "nome": "Supercombo",
+            "imagem": "https://i.scdn.co/image/ab6761610000e5ebb3f80b4c25759ea6d72907b4"
+          },
+          {
+            "nome":"Lucas Silveira",
+            "imagem":"https://i.scdn.co/image/ab6761610000e5eb315683944b3cbd361f46314c"
+          }
+        ]
+      },
+      {
+        "nome": "Café Amargo",
+        "artistas": [
+          "Supercombo"
+        ]
+      },
+      {
+        "nome": "Labirintite",
+        "artistas": [
+          "Supercombo"
+        ]
+      },
+      {
+        "nome": "Sorte e Azar",
+        "artistas": [
+          "Supercombo"
+        ]
+      }
+    ]
+  },{
+    "nome": "Gatuno",
+    "genero": "Bommbap",
+    "preco":"70.00",
+    "artista": [
+      {
+        "nome": "alec'",
+        "imagem": "https://i.scdn.co/image/ab6761610000e5eb8f1ee078a04efcbc52ea882b"
+      },{
+        "nome": "sazack",
+        "imagem": "https://i.scdn.co/image/ab6761610000e5eb87570157fc84594fb9be8bd6"
+      }
+    ],
+    "disco": "https://i.scdn.co/image/ab67616d0000b27394d936c326991bb5f3f1594d",
+    "imagem": "https://i.scdn.co/image/ab67616d0000b27394d936c326991bb5f3f1594d",
+    "musicas": ["Gatuno"]
+  }
+]

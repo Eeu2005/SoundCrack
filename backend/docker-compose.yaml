@@ -1,0 +1,8 @@
+services:
+  mongodb:
+    ports:
+      - 27017:27017
+    image: mongodb/mongodb-community-server:7.0-ubi9
+    environment:
+      - MONGODB_INITDB_ROOT_USERNAME=user
+      - MONGODB_INITDB_ROOT_PASSWORD=pass

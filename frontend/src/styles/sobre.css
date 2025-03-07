@@ -1,0 +1,107 @@
+:root{
+    --corAlbum:#d37549;
+}
+body{
+  flex-wrap: wrap;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+   height: 100vh;
+  background: linear-gradient(-87deg, var(--corAlbum) 38%,#31373f ) ;
+}
+
+.titulo{
+    font-family: "Ribeye";
+text-shadow: 0px 1px black;
+  }
+.titulo > h1:nth-child(1) {
+  text-shadow: 5px 2px 2px 1px var(--corAlbum);
+    color: var(--corPrimaria);
+    font-size: 2em;
+    font-weight: 100;
+  }
+  .titulo > h1:nth-child(2) {
+   
+    color: var(--corPrimaria);
+    font-size: 2.8em;
+    font-weight: 100;
+  }
+  
+  aside{
+    width: 40%;
+    font-size: 20px;
+    color: white;
+    height: 540px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  aside:has(img){
+    position: relative;
+  }
+  .botao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    width: 231px;
+    border-radius: 8px;
+    background-color: var(--corPrimaria);
+    color: black !important;
+    padding: 15px;
+  }
+  .botao:hover{
+    background-color: black;
+    color: var(--corPrimaria )!important;
+    box-shadow: 5px 2px 2px 1px var(--corAlbum);
+  }
+  #capaAlbum{
+    box-shadow:  0 2px 20px  #0000002e;
+    z-index: 5;
+    animation: Subindo 2.5s ;
+  }
+  #capaDistorcida{
+    z-index: -5;
+        right: 5px;
+        animation: Subindo 2.5s;
+        width: 100vh;
+        /* rotate: 284deg; */
+        filter: blur(50px) brightness(0.8);
+  }
+  img{
+    position: absolute;
+    border-radius: 5px;
+    width: 100%;
+  }
+  .slogan{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+   p{ 
+    font-size: 25px;
+  }
+  }
+  @media   (max-width:945px) {
+    body{
+      height: auto;
+      justify-content: space-around;
+    }
+    
+  }
+  /* @keyframes Subindo {
+    from{
+      transform: translateY(100%) translateZ(500px);
+    }
+    to{
+      transform: translateY(0%) translateZ(405px);
+    }
+  } */
+  @keyframes gradient {
+      from {
+       opacity: 0;
+      }to{
+      opacity: 1;
+      }
+
+      
+  }

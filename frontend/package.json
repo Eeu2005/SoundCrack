@@ -1,0 +1,24 @@
+{
+  "name": "frontend",
+  "private": true,
+  "author": {
+    "name": "Eeu",
+    "email": "Emanuel.dosmelo@gmial.com"
+  },
+  "description": "frontend do soundcrack",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "~5.6.2",
+    "vite": "^6.0.5"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "colorthief": "^2.6.0"
+  }
+}
