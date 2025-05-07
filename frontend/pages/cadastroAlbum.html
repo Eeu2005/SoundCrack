@@ -13,15 +13,15 @@
     <link rel="stylesheet" href= "/src/styles/footer.css">
 </head>
 <body>
-        <header>
+     <header>
             <div class="titulo">
                 <h1>Sound</h1>
                 <h1>Crack</h1>
             </div>
             <ul class="nav">
-                <li><a href="./loja.html">Inicio</a></li>
-                <li><a href="./sobre.html">Sobre</a></li>
-                <li><a href="./cadastro.html">Cadastro</a></li>
+                <li><a href="./loja">Inicio</a></li>
+                <li><a href="./sobre">Sobre</a></li>
+                <li><a href="./cadastroAlbum">Cadastro</a></li>
             </ul>
             <div class="burguer">
                 <div class="fatia1"></div>
@@ -70,11 +70,12 @@
                 
                 </form>
         </main>
-        <footer>
-            <h3 > <a href="https://github.com/Eeu2005" target="_blank" rel="noopener noreferrer">&copy; Made by EU </a></h3>
-            <img src="/SoundCrack-Logo.png" alt="SoundCrack-Logo">
-        </footer>
-        <script src="/scripts/header.js"></script>
+<footer>
+        <h3> &copy; Made by EU</h3>
+        <img src="/SoundCrack-Logo.png" alt="SoundCrack-Logo">
+    </footer>
+    <script type="module" src="/src/loja.ts"></script>
+    <script type="module" src="/src/header.ts"></script>
         <script>
             document.querySelectorAll("input[type='file']").forEach((i)=>{
                 i.addEventListener("change",(e)=>{

@@ -1,5 +1,6 @@
+import { AxiosError } from "axios"
 import { chip } from "./chip"
-import type { Artista, res } from "./types"
+import type { Artista } from "./types"
 import { axios } from "./utils/axios"
 import { mountDatalist } from "./utils/mountDatalist"
 import { mountSelect } from "./utils/mountSelect"
@@ -36,23 +37,23 @@ btnMais.addEventListener("click",()=>{
     }
   }
 })
-interface props {
-        code: string;
-        error: string;
-        message: string;
-        statusCode: string;
-      };
+
 window.addEventListener("submit",async e=>{
   e.preventDefault()
   const  temp = querySelector<HTMLFormElement>("form");
    const form = new FormData(temp)
-  const {status,data,} =  await axios.post<string|props>("/albuns",form)
-  if(status === 201 || status===200){
+   try{
+  await axios.post<string>("/albuns",form)
     alert("Album cadastrado com sucesso")
     temp.reset()
-  }else{
-    console.log(data)
-    alert(`erro ${data}`)
-  }
+   }catch(e){
+    if(e instanceof AxiosError){
+    console.log(e.response)
+    alert(`erro ${e.response?.data}`)
+    }else{
+      alert("erro interno")
+    }
+   }
+
 })
 window.onload=teste

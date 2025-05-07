@@ -66,7 +66,7 @@ Soundcrack é um projeto full-stack de um e-commerce de discos de músicas. Ele 
    ```
 3. Inicie o servidor de desenvolvimento:
    ```sh
-   npm run dev
+   npm run build
    ```
 
-Agora você pode acessar o frontend em `http://localhost:5173` e o backend em `http://localhost:3000`.
+Agora você pode acessar o frontend em `http://localhost:3000/public/pages/loja.html` e o backend em `http://localhost:3000`.

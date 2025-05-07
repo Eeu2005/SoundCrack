@@ -3,3 +3,4 @@
 */.env
 /backend/public/*
 !/backend/public/.gitkeep
+*/dist

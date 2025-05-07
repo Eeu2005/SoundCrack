@@ -1,10 +1,13 @@
 import { connect } from "mongoose";
-import seed from "./seed/seed.json" assert {type:"json"};
+import albuns from "./seed/seedAlbuns.json" with {type:"json"};
+import user from "./seed/userSeed.json" with {type:"json"};
 import { modelArtista } from "./src/models/artista.model.ts";
 import { get } from "https";
-import { createWriteStream, mkdirSync, rmSync } from "fs";
+import { createWriteStream, existsSync, mkdirSync, rmSync, writeFileSync } from "fs";
 import { modelAlbum } from "./src/models/albun.model.ts";
 import { env } from "./env.ts";
+import { modelUsers } from "./src/models/users.model.ts";
+import { hashSync} from "bcrypt"
 const con =await connect(env.CONN_STR, {
   dbName: "soundcrack_db",
 });
@@ -37,12 +40,14 @@ const fetchImage =(imagem:string,caminho:string)=>{
 
 
 
+
 rmSync("./public/",{force:true,recursive:true,})
 mkdirSync("./public")
+writeFileSync("./public/.gitkeep","",)
 
-await Promise.all([modelAlbum.deleteMany().exec() , modelArtista.deleteMany().exec()])
+await Promise.all([modelAlbum.deleteMany().exec(),modelArtista.deleteMany().exec(),modelUsers.deleteMany().exec()])
 
-for (const album of seed){
+for (const album of albuns){
   console.log("começando albun"+album.nome)
   const artistas =  await Promise.all(album.artista.map(async ar=>{
   let caminho = "/public/" + Date.now().toString() + ar.nome[3]+"artista.jpeg";
@@ -66,7 +71,7 @@ for (const album of seed){
       mus.artistas
         .filter((e) => typeof e === "object")
         .map((ar) => {
-          if(ar.nome==="Supercombo") return
+          if(!ar?.imagem) return
           let caminho = "/public/" + Date.now().toString() + "artista.jpeg";
           fetchImage(ar.imagem,caminho);
           
@@ -98,10 +103,17 @@ for (const album of seed){
 }).save().then((e)=>{
   console.log("album criado " +e.nome )
 })
-let a = setTimeout(() => {
-  con.connection.close();
-  clearTimeout(a)
-}, 2000);
 }
+/*--- criando usuario administrador */
+
+modelUsers.insertOne({
+  email:user.email,
+  senha:hashSync(user.senha,env.SALT),
+  tipo:user.tipo
+}).then((e)=>{
+console.log("usuario administrador criado")
+console.log(user);
+con.connection.close()
+})
 
 

@@ -18,7 +18,9 @@
     "vite": "^6.0.5"
   },
   "dependencies": {
+    "@neutrixs/colorthief": "^2.5.0",
+    "@vituum/vite-plugin-handlebars": "^1.1.0",
     "axios": "^1.7.9",
-    "colorthief": "^2.6.0"
+    "vite-plugin-handlebars": "^2.0.0"
   }
 }

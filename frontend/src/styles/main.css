@@ -57,6 +57,10 @@
     --corPrimaria: #ffb11e;
 }
 body{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  min-height: 100vh;
   overflow-x: hidden;
     font-family: Circular,sans-serif;
     background: #31373f

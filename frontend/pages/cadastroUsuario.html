@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caastro Usuario</title>
+    <link rel="stylesheet" href="/src/styles/main.css">
+    <link rel="stylesheet" href="/src/styles/footer.css">
+    <link rel="stylesheet" href="/src/styles/header.css">
+    <link rel="stylesheet" href="/src/styles/cadastroUsuario.css">
+</head>
+<body>
+<header>
+            <div class="titulo">
+                <h1>Sound</h1>
+                <h1>Crack</h1>
+            </div>
+            <ul class="nav">
+                <li><a href="./loja">Inicio</a></li>
+                <li><a href="./sobre">Sobre</a></li>
+                <li><a href="./cadastroAlbum">Cadastro</a></li>
+            </ul>
+            <div class="burguer">
+                <div class="fatia1"></div>
+                <div class="fatia2"></div>
+                <div class="fatia3"></div>
+            </div>
+        </header>
+    <main>
+            <script type="module" src="/src/mudarContexto.ts"></script>
+      <div class="login">
+        <h2>Bem vindo de volta ao SoundCrack</h2>
+        <form id="login" class="formulario">
+          <label for="email_login">
+            <p>Email</p>
+            <input type="email" id="email_login" name="email">
+          </label>
+          <label for="senha_login">
+            <p>Senha</p>
+            <input type="password" name="senha" id="senha_login">
+          </label>
+          <button type="submit">Logar</button>
+        </form>
+        <h3 onclick="mudarContexto('cadastro')">Não cadastrado?, click para cadastrar </h3>
+      </div>
+
+      
+       <div class="cadastro escondido">
+        <h2>Bem vindo ao SoundCrack</h2>
+        <form id="cadastro" class="formulario">
+          <label for="email_cadastro">
+            <p>Email</p>
+            <input type="email" id="email_cadastro" name="email">
+          </label>
+          <label for="senha_login">
+            <p>Senha</p>
+            <input type="password" name="senha" id="senha_login">
+          </label>
+          <button type="submit">cadastrar</button>
+        </form>
+        <h3 onclick="mudarContexto('login')">Já possui uma conta click para logar  </h3>
+      </div>
+      <script type="module" src="/src/cadastroUsuario.ts"></script>
+    </main>
+  <footer>
+        <h3> &copy; Made by EU</h3>
+        <img src="/SoundCrack-Logo.png" alt="SoundCrack-Logo">
+    </footer>
+    <script type="module" src="/src/loja.ts"></script>
+    <script type="module" src="/src/header.ts"></script>
+</body>
+</html>

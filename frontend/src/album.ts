@@ -1,5 +1,5 @@
 import type { AlbumPopulado } from "./types";
-import { axiosInstace } from "./utils/axios";
+import { axios } from "./utils/axios";
 import { pegarCor } from "./utils/color-thief";
 import { querySelector } from "./utils/querySelector";
 
@@ -10,7 +10,7 @@ async function handleRequest(){
       return null
     }
     try{
-  const tmp = await axiosInstace.get<AlbumPopulado>(`albuns/${param}`)
+  const tmp = await axios.get<AlbumPopulado>(`albuns/${param}`)
   return tmp.data
     }catch(e:any){
         if(e.response){

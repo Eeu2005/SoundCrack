@@ -21,11 +21,10 @@ connect(env.CONN_STR,{
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
-app.register(fastifyStatic,{
-  root:import.meta.dirname+"/public/",
-  prefix:"/public",
-  
-})
+app.register(fastifyStatic, {
+  root: [import.meta.dirname + "/public/", import.meta.dirname + "/dist/"],
+  prefix: "/public",
+});
 app.register(fastifyCookie,{  
 });
 app.register(fastifySession, {
@@ -57,7 +56,7 @@ try{
 app.listen({
   port: env.PORT,
 }).then(()=>{
-  console.log("ligado no http://localhost:1600")
+  console.log(`ligado no http://localhost:${env.PORT}`)
 });
 }catch(e){
 app.log.error(e)

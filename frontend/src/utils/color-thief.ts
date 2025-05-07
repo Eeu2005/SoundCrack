@@ -1,4 +1,4 @@
-import colorthief  from "colorthief" 
+import colorthief  from "@neutrixs/colorthief" 
 const o  = new colorthief()
 export  function pegarCor(img:HTMLImageElement|null,div:HTMLElement){
   console.log(img?.complete)

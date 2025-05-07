@@ -1,5 +1,5 @@
 import type { AlbumPopulado } from "./types";
-import { axiosInstace } from "./utils/axios";
+import { axios } from "./utils/axios";
 import { pegarCor } from "./utils/color-thief";
 import { querySelector } from "./utils/querySelector";
 
@@ -10,7 +10,7 @@ async function showAlbuns(){
   let capaAlbum = querySelector<HTMLImageElement>("#capaAlbum");
   let capaDistorcida =  querySelector<HTMLImageElement>("#capaDistorcida");
  
-  const albumSortido:AlbumPopulado =(await axiosInstace.get("/albuns/rand")).data
+  const albumSortido:AlbumPopulado =(await axios.get("/albuns/rand")).data
      artista.innerText = `De: ${[albumSortido.artistas.map(ar=>ar.nome)].join(" - ")}`;
      album.innerText = `${albumSortido.nome}`;
      capaAlbum.src = import.meta.env.VITE_URLBACKEND+albumSortido.capa;

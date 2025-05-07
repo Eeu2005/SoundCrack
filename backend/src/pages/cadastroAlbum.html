@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundCrack</title> 
+    <link rel="shortcut icon" href="/SoundCrack-Logo.png" type="image/x-icon">
+  <script type="module" crossorigin src="/assets/cadastroAlbum-o9c_NFkJ.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/querySelector-Dh1o6Lyo.js">
+  <link rel="modulepreload" crossorigin href="/assets/header-Dtx165BT.js">
+  <link rel="stylesheet" crossorigin href="/assets/querySelector-Chyqd5Y0.css">
+  <link rel="stylesheet" crossorigin href="/assets/cadastroAlbum-C7NgIj6X.css">
+  <link rel="stylesheet" crossorigin href="/assets/footer-_rj1wnuY.css">
+</head>
+<body>
+     <header>
+            <div class="titulo">
+                <h1>Sound</h1>
+                <h1>Crack</h1>
+            </div>
+            <ul class="nav">
+                <li><a href="./loja">Inicio</a></li>
+                <li><a href="./sobre">Sobre</a></li>
+                <li><a href="./cadastroAlbum">Cadastro</a></li>
+            </ul>
+            <div class="burguer">
+                <div class="fatia1"></div>
+                <div class="fatia2"></div>
+                <div class="fatia3"></div>
+            </div>
+        </header>
+        <main>
+            <form>
+                <label>
+                    <p>Nome do album</p>
+                    <input required type="text" name="nome" id="nomeAlbum">
+                </label>
+                <label id="labelArtistas">
+                    <p>Artistas</p>
+                    <div class="input_button">
+                        <input  autocomplete="none" type="text" id="inputArtistas">
+                        <button id="btnMais" type="button">+</button>
+                    </div>
+                    <div class="campoArtistas"></div>
+                </label>
+                <label>
+                    <p>Gênero</p>
+                    <select name="genero" id="genero">
+                        <option value="NULL"></option>
+                    </select>
+                </label>
+                <label>
+                    <p>Imagem da capa album</p>
+                    <label for="capaAlbum" class="fakeip">Click para Inserir</label>
+                    <input required type="file" accept="image/*" name="capa" pattern="(.jpeg)|(.png)|(.jpg)" id="capaAlbum">
+                </label>
+                <label>
+                    <p>Imagem estado do disco</p>
+                        <label for="disco" class="fakeip">Click para Inserir</label>
+                    <input required type="file" accept="image/*" name="disco" id="disco">
+                </label>
+                <label>
+                    <p>Preço</p>
+                    <input required type="number" name="preco" id="preco">
+                </label>
+    
+                    <label class="botoes">
+                    <button type="submit" id="enviar">Enviar</button>
+                    </label>
+                
+                </form>
+        </main>
+<footer>
+        <h3> &copy; Made by EU</h3>
+        <img src="/SoundCrack-Logo.png" alt="SoundCrack-Logo">
+    </footer>
+        <script>
+            document.querySelectorAll("input[type='file']").forEach((i)=>{
+                i.addEventListener("change",(e)=>{
+                    i.labels[1].innerText=e.target.value.replace("C:\\fakepath\\","")
+                })
+            })
+            </script>
+</body>
+</html>
