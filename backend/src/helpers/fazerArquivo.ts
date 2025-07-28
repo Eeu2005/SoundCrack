@@ -9,6 +9,7 @@ export function fazerArquivo(File:Buffer,nome:string) {
     "public",
     date.toString()+nome + ".jpeg"
   );
+  console.log(typeof File)
   writeFileSync(caminho,File)
 
 return "/public/"+date.toString()+nome+".jpeg";

@@ -19,7 +19,8 @@ interface Album{
   musicas:{
     nome:string,
     artistsas:Id[]
-  }[]
+  }[],
+  publicante:User
 }
 interface AlbumPopulado extends Album {
   artistas: Artista[];
@@ -36,8 +37,8 @@ interface PropsAlbum {
   nome: string;
   preco:number
   artistas: string[] | string;
-  novoArtistas: string[] | string | undefined;
   genero: string;
+  publicante:string
 }
 interface Musica{
     nome:string,
@@ -47,6 +48,7 @@ interface Musica{
   interface User extends Document {
   _id: Id;
     email: string;
+    nome:string
     tipo: "padrao" | "admin";
     senha: string;
     albuns:Id[]

@@ -20,5 +20,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "node_modules/colorthief/index.d.ts"]
+  "include": ["src"]
 }

@@ -1,6 +1,7 @@
 import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 import { z } from "zod";
 import { cadastroUsuario, loginUsuario } from "../controllers/users.controller.ts";
+import { EmailOla } from "../helpers/emails.ts";
 
 export const UsersRoute: FastifyPluginAsyncZod = async (fastify) => {
   fastify.post(
@@ -9,6 +10,7 @@ export const UsersRoute: FastifyPluginAsyncZod = async (fastify) => {
       schema: {
         body: z.object({
           email: z.string().email(),
+          nome:z.string(),
           senha: z
             .string()
             .min(5, "A senha deve conter pelo menos 5 caracteres"),
@@ -16,9 +18,11 @@ export const UsersRoute: FastifyPluginAsyncZod = async (fastify) => {
       },
     },
     async (request, reply) => {
-      const { email, senha } = request.body;
-      const user = await cadastroUsuario(email, senha);
+      const { email, senha, nome} = request.body;
+      const user = await cadastroUsuario({email,senha,nome});
+
       request.session.user = user;
+      EmailOla(user)
       return reply.status(201).send("usuario criado");
     }
   );

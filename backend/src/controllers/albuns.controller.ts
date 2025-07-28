@@ -1,15 +1,20 @@
 import { modelAlbum } from "../models/albun.model.ts";
-import type { AlbumPopulado, FileProps, Musica, PropsAlbum } from "../types.js";
+import type { AlbumPopulado, FileProps, Musica, PropsAlbum, User } from "../types.js";
 import { modelArtista } from "../models/artista.model.ts";
 import { fazerArquivo } from "../helpers/fazerArquivo.ts";
-import { Types } from "mongoose";
+import { isValidObjectId, Mongoose, Types } from "mongoose";
 import { setArtista } from "./artistas.controller.ts";
+import { modelUsers } from "../models/users.model.ts";
+import { StatusAlbum } from "../helpers/emails.ts";
 
 export async function getAlbumAdmin() {
   const album = await modelAlbum.find<AlbumPopulado>();
   return album;
 }
 export async function getOneAlbumAdmin(id: string): Promise<AlbumPopulado> {
+   const busca = !isValidObjectId(id)
+     ? { nome: id, }
+     : { _id: id, };
   const album = await modelAlbum
     .findById<AlbumPopulado>(id)
     .populate("musicas.artistas");
@@ -21,8 +26,9 @@ export async function getAlbum() :Promise<AlbumPopulado[]> {
   return album;
 }
 export async function getOneAlbum(id: string): Promise<AlbumPopulado> {
+  const busca = !isValidObjectId(id) ? {nome:id,aprovado:true}:{_id:id,aprovado:true}
   const album = await modelAlbum
-    .findOne<AlbumPopulado>({_id:id,aprovado:true})
+    .findOne<AlbumPopulado>(busca)
     .populate("musicas.artistas");
   if (!album) throw new Error("Album não encontrado");
   return album;
@@ -43,44 +49,26 @@ export async function getRandonAlbum():Promise<AlbumPopulado>{
 
 export async function setAlbum(album: PropsAlbum, files:FileProps[]) {
 // console.log(album)
-  if(Array.isArray(album.artistas)){
-     for (const e of album.artistas) {
-       if (!Types.ObjectId.isValid(e)) {
-         throw new Error("codigo invalido");
-       }
-       if (!(await modelArtista.exists({ _id: e }))) {
-         throw new Error("não existe artista com esse id:" + e);
-       }
-     }
- }else{
+if (!(await modelUsers.exists({ _id: album.publicante }))) {
+  throw new Error("usuario não encontrado")
+}
+  if (Array.isArray(album.artistas)) {
+    for (const e of album.artistas) {
+      if (!Types.ObjectId.isValid(e)) {
+        throw new Error("codigo invalido");
+      }
+      if (!(await modelArtista.exists({ _id: e }))) {
+        throw new Error("não existe artista com esse id:" + e);
+      }
+    }
+  } else {
     if (!Types.ObjectId.isValid(album.artistas)) {
       throw new Error("codigo invalido");
     }
     if (!(await modelArtista.exists({ _id: album.artistas }))) {
       throw new Error("não existe artista com esse id:" + album.artistas);
     }
-    album.artistas = [album.artistas]
- }
-  if(album.novoArtistas){
-   // console.log(album);
-    if(Array.isArray(album.novoArtistas)){
-      for (const e of album.novoArtistas) {
-        if ((await modelArtista.exists({ nome: e }))) {
-          throw new Error("Artista já existe:" + e);
-        }else{
-          const artista = await  setArtista(e,files[0])
-          console.log(artista)  
-          album.artistas.push(artista._id)
-        }
-      }
-    }else{
-      if ((await modelArtista.exists({ nome: album.novoArtistas }))) {
-        throw new Error("Artista já existe:" + album.novoArtistas);
-      }else{
-        const artista = await  setArtista(album.novoArtistas,files[0])
-        album.artistas.push(artista.toObject()._id)
-      }
-    }
+    album.artistas = [album.artistas];
   }
 console.log(album);
   const capaCaminho = fazerArquivo(files[0].buffer,files[0].fieldname);
@@ -91,12 +79,13 @@ console.log(album);
     artistas: album.artistas,
     genero:album.genero,
     capa:capaCaminho,
-    disco:discoCaminho
+    disco:discoCaminho,
+    publicante:album.publicante
   }).save()
 }
 
-export async function putMusic(musicas:Musica[],id:string){
-  const album = await modelAlbum.findById(id)
+export async function putMusic(musicas:Musica[],id:string,userId:string){
+  const album = await modelAlbum.findOne({_id:id,publicante:userId})
   console.log(album)
   if(!album){
     throw new Error("Album não encontrado")
@@ -121,14 +110,16 @@ export async function getGeneros(){
   const generos = await modelAlbum.distinct("genero")
   return generos
 }
-export async function  atualizarSituacao(id:string){
-  const album = await modelAlbum.findById(id)
+export async function  atualizarSituacao(id:string,status:boolean){
+  const album = await modelAlbum.findById(id).populate("publicante");
   if(!album){
     throw new Error("Album não encontrado")
   }
   if(album.musicas.length === 0){
     throw new Error("Album sem musicas")
   }
-  await album.updateOne({$set:{aprovado:!album.aprovado}})
+  await album.updateOne({$set:{aprovado:status}})
+  StatusAlbum(album,album.publicante)
+  console.log(album)
   return album.aprovado
 }

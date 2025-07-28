@@ -25,30 +25,33 @@ export const AlbumSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
-  disco:{
-     required: true,
+  disco: {
+    required: true,
     type: String,
   },
-  preco:{
-    type:Number,
-    required:true
+  preco: {
+    type: Number,
+    required: true,
   },
   musicas: {
     type: [schemaMusica],
-    },
-    genero:{
-      required:true,
-      type:String
-    },
-    aprovado:{
-      required:true,
-      type:Boolean,
-      default:false
-    }
-  
+  },
+  genero: {
+    required: true,
+    type: String,
+  },
+  aprovado: {
+    required: true,
+    type: Boolean,
+    default: false,
+  },
+  publicante: {
+    type: mongoose.Types.ObjectId,
+    ref: "users",
+  },
 });
 AlbumSchema.pre("find",function(){
-  this.populate("artistas","nome")
+this.populate("artistas",["nome","imagem"])
 })
 AlbumSchema.pre("findOne", function () {
   this.populate("artistas", "nome");

@@ -1,7 +1,8 @@
 export function  querySelector<T  extends HTMLElement >(html:string):T{
   const tmp=  document.querySelector<T>(html)
-  
-  console.log(tmp)
+  if(!tmp){
+    throw new Error("Elemento não encontrado");
+  }
 
-  return tmp!
+  return tmp
 }

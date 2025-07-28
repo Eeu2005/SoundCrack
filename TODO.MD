@@ -1,0 +1,4 @@
+- 1 Refazer em React
+- 2 terminar emails
+- 3 dockernizar tudo
+- 4 Normalizar a seed

@@ -10,9 +10,9 @@ import {
   atualizarSituacao,
   getOneAlbumAdmin,
 } from "../controllers/albuns.controller.ts";
-import {pushAlbum} from "../controllers/users.controller.ts";
 import { z } from "zod";
 import type { AlbumPopulado, FileProps } from "../types.js";
+import { EmailNovoAlbum } from "../helpers/emails.ts";
 
 export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
   fastify.setErrorHandler((err, request, reply) => {
@@ -22,7 +22,6 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
   fastify.get("/albuns", async (request, reply) => {
     if(request.session.user !== undefined &&  request.session.user.tipo === "admin"){
     const albuns =await getAlbumAdmin()
-    albuns.forEach(album=>album.capa = request.protocol+"://"+request.host +album.capa)
     return albuns;
     }
     const albuns = await getAlbum();
@@ -51,7 +50,7 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
       }else{
         album = await getOneAlbum(id);
       }
-      album.capa = request.protocol + "://" + request.host + album.capa;
+      // album.capa = request.protocol + "://" + request.host + album.capa;
       return album
     }
   );
@@ -69,7 +68,6 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
           genero: z.string(),
           preco: z.coerce.number(),
           artistas: z.string().or(z.string().array()),
-          novoArtistas: z.string().array().optional().or(z.string().optional()),
           capa: z.custom<Buffer>(),
           disco: z.custom<Buffer>(),
         }),
@@ -79,15 +77,15 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
       if(request.session.user === undefined){
         return reply.status(401).send("Você precisa estar logado para fazer isso")
       }
-      const { artistas,novoArtistas, nome, capa, disco, genero,preco } = request.body;
-      console.log(preco)
+      const { artistas, nome, capa, disco, genero,preco } = request.body;
+      const {id:publicante} = request.session.user
+      console.log(publicante)
       const files: FileProps[] = [
         { fieldname: "capa", buffer: capa },
         { fieldname: "disco", buffer: disco },
       ];
-     const album = await setAlbum({ artistas, nome, genero, preco,novoArtistas }, files)
-     console.log(album)
-      await pushAlbum(request.session.user._id,album._id)
+     const album = await setAlbum({ artistas, nome, genero, preco,publicante }, files)
+      EmailNovoAlbum(album,request.session.user)
     return reply.status(201).send(album._id);
     }
   );
@@ -108,15 +106,18 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
     },
     async (request, reply) => {
       const { params, body } = request;
-      await putMusic(body, params.id);
+      const {id:idUser} = request.session.user
+      if (!idUser) {
+        return reply
+          .status(401)
+          .send("Você precisa estar logado para fazer isso");
+      }
+      await putMusic(body, params.id, idUser);
       reply.status(201).send();
     }
   );
 
-  fastify.get("/generos", async (request, reply) => {
-    const generos = await getGeneros()
-    return generos
-  })
+  fastify.get("/generos", async (request, reply) => getGeneros())
 
   fastify.put(
     "/albuns/:id",
@@ -124,6 +125,9 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
       schema:{
         params:z.object({
           id:z.string()
+        }),
+        body:z.object({
+          status:z.boolean()
         })
       }
     },async (request,reply)=>{
@@ -131,8 +135,9 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
        return  reply.status(401).send("Acesso negado");
       }
       const {id} = request.params
-      await atualizarSituacao(id)
-      reply.status(200).send("Situação atualizada")
+      const {status}= request.body
+      await atualizarSituacao(id,status)
+    return  reply.status(200).send("Situação atualizada")
     }
   )
 };

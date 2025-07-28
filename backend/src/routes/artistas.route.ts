@@ -2,6 +2,7 @@ import type { FastifyPluginAsyncZod } from "fastify-type-provider-zod";
 import {
   getArtistas,
   getOneArtista,
+  searchArtist,
   setArtista,
 } from "../controllers/artistas.controller.ts";
 import { z } from "zod";
@@ -15,7 +16,16 @@ export const RouteArtistas: FastifyPluginAsyncZod = async (fastify) => {
     }
      return reply.status(200).send(artistas);
   });
-
+  fastify.get("/artistas/search/:nome",{
+    schema:{
+      params:z.object({
+        nome:z.string()
+      })
+    }
+  },(req,res)=>{
+    const {nome}=req.params
+    return searchArtist(nome)
+  })
   fastify.get(
     "/artistas/:id",
     {
@@ -42,8 +52,12 @@ export const RouteArtistas: FastifyPluginAsyncZod = async (fastify) => {
       },
     },
     async (request, reply) => {
+     if (request.session.user === undefined) {
+       return reply
+         .status(401)
+         .send("Você precisa estar logado para fazer isso");
+     }
       const {imagem,nome} =request.body
-      console.log(nome)
       return await setArtista(nome,{fieldname:"imagem",buffer:imagem});
     }
   );

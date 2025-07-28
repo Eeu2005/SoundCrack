@@ -1,5 +1,6 @@
 {
   "email":"admin@mail.com",
+  "nome":"Admin",
   "senha":"admin123",
   "tipo":"admin"
 }

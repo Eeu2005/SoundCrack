@@ -41,11 +41,11 @@
     "imagem": "https://i.scdn.co/image/ab67616d0000b2735011018cca4aa7091e08ae93",
     "disco": "https://i.scdn.co/image/ab67616d0000b2735011018cca4aa7091e08ae93"
   },{
-    "nome":"Supercombo",
+    "nome":"supercombo",
     "genero":"Rock",
     "preco":"60.00",
     "artista":[{
-      "nome":"Supercombo",
+      "nome":"supercombo",
       "imagem":"https://i.scdn.co/image/ab6761610000e5ebb3f80b4c25759ea6d72907b4"
     }],
     "disco":"https://i.scdn.co/image/ab67616d0000b27323ad7415e0d5fe197db5f321",
@@ -54,26 +54,26 @@
       {
         "nome": "Farol",
         "artistas": [
-          "Supercombo"
+          "supercombo"
         ]
       },
       {
         "nome": "Saudade",
         "artistas": [
-          "Supercombo"
+          "supercombo"
         ]
       },
       {
         "nome": "Gravidade",
         "artistas": [
-          "Supercombo"
+          "supercombo"
         ]
       },
       {
         "nome": "Cebolas",
         "artistas": [
           {
-            "nome": "Supercombo",
+            "nome": "supercombo",
             "imagem": "https://i.scdn.co/image/ab6761610000e5ebb3f80b4c25759ea6d72907b4"
           },
           {
@@ -85,19 +85,19 @@
       {
         "nome": "Café Amargo",
         "artistas": [
-          "Supercombo"
+          "supercombo"
         ]
       },
       {
         "nome": "Labirintite",
         "artistas": [
-          "Supercombo"
+          "supercombo"
         ]
       },
       {
         "nome": "Sorte e Azar",
         "artistas": [
-          "Supercombo"
+          "supercombo"
         ]
       }
     ]

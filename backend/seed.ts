@@ -71,6 +71,7 @@ for (const album of albuns){
       mus.artistas
         .filter((e) => typeof e === "object")
         .map((ar) => {
+          // ts-ignore
           if(!ar?.imagem) return
           let caminho = "/public/" + Date.now().toString() + "artista.jpeg";
           fetchImage(ar.imagem,caminho);
@@ -108,6 +109,7 @@ for (const album of albuns){
 
 modelUsers.insertOne({
   email:user.email,
+  nome:user.nome,
   senha:hashSync(user.senha,env.SALT),
   tipo:user.tipo
 }).then((e)=>{

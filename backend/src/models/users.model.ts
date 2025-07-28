@@ -5,6 +5,10 @@ const SchemaUsers = new mongoose.Schema({
     required: true,
     type: String,
   },
+  nome: {
+    required: true,
+    type: String,
+  },
   tipo: {
     type: String,
     required: true,
@@ -14,10 +18,6 @@ const SchemaUsers = new mongoose.Schema({
   senha: {
     required: true,
     type: String,
-  },
-  albuns: {
-    type: [mongoose.Types.ObjectId],
-    ref: "albuns",
   },
 });
 export const modelUsers = model<User>("users",SchemaUsers)

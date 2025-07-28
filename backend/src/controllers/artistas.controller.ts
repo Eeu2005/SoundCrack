@@ -6,6 +6,13 @@ import { modelAlbum } from "../models/albun.model.ts";
 export async function getArtistas():Promise<Artista[]>{
   return await modelArtista.find()
 }
+
+export async function searchArtist(name:string){
+  const regex = new RegExp(`^${name}`)
+  console.log(regex)
+  const artista = await modelArtista.find({nome:regex}).select("nome")
+  return artista
+}
 export async function getOneArtista(id:string):Promise<Artista>{
   let artista =  await modelArtista.findById(id)
     if(!artista){
