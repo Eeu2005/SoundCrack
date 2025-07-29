@@ -1,4 +1,4 @@
-# Soundcrack <img width="40" src="./frontend/public/SoundCrack-Logo.png" align="right" >
+# Soundcrack <img width="40" src="./frontend/public/SoundCrack-Logo.png" align="left" >
 
 ## Descrição
 

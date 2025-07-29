@@ -45,7 +45,7 @@ export async function StatusAlbum(album:Album,user:User) {
       from: "<noreply.soundcrack@mail.com>",
       to: user.email,
       subject: "Status de "+album.nome,
-      html: `O Album ${album.nome} está ${album.aprovado?"Aprovado":"Reprovado"} 
+      html: `O Album ${album.nome} está ${album.aprovado?"Aprovado Parabéns":"Reprovado"} 
       `,
     })
     .catch((e) => {
