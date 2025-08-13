@@ -3,26 +3,39 @@ import type { AlbumPopulado, FileProps, Musica, PropsAlbum, User } from "../type
 import { modelArtista } from "../models/artista.model.ts";
 import { fazerArquivo } from "../helpers/fazerArquivo.ts";
 import { isValidObjectId, Mongoose, Types } from "mongoose";
-import { setArtista } from "./artistas.controller.ts";
 import { modelUsers } from "../models/users.model.ts";
 import { StatusAlbum } from "../helpers/emails.ts";
 
-export async function getAlbumAdmin() {
-  const album = await modelAlbum.find<AlbumPopulado>();
+type pagination={
+  page:number,
+  per_page:number
+}
+const padrao:pagination={
+  page:1,
+  per_page:10,
+}
+
+export async function getAlbumAdmin({page,per_page}:pagination=padrao) {
+  const album = await modelAlbum.find<AlbumPopulado>({
+
+  }).skip(per_page*page).limit(page);
   return album;
 }
 export async function getOneAlbumAdmin(id: string): Promise<AlbumPopulado> {
-   const busca = !isValidObjectId(id)
-     ? { nome: id, }
-     : { _id: id, };
+
   const album = await modelAlbum
     .findById<AlbumPopulado>(id)
     .populate("musicas.artistas");
   if (!album) throw new Error("Album não encontrado");
   return album;
 }
-export async function getAlbum() :Promise<AlbumPopulado[]> {
-  const album = await modelAlbum.find<AlbumPopulado>({aprovado:true});
+export async function getAlbum({ page, per_page }: pagination = padrao): Promise<
+  AlbumPopulado[]
+> {
+  const album = await modelAlbum
+    .find<AlbumPopulado>({ aprovado: true })
+    .limit(per_page)
+    .skip(per_page * (page-1))
   return album;
 }
 export async function getOneAlbum(id: string): Promise<AlbumPopulado> {
@@ -39,10 +52,7 @@ export async function getRandonAlbum():Promise<AlbumPopulado>{
     {$lookup:{from:"artistas",as:"artistas",foreignField:"_id",localField:"artistas"}},
     { $sample: { size: 1 } },
   ]);
-  if(!album){
-    console.log(album)
-    return getRandonAlbum()
-  }
+  
   return album[0]
 }
 

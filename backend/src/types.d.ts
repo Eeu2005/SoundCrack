@@ -18,7 +18,7 @@ interface Album{
   aprovado:boolean,
   musicas:{
     nome:string,
-    artistsas:Id[]
+    artistas:Id[]
   }[],
   publicante:User
 }
@@ -26,7 +26,7 @@ interface AlbumPopulado extends Album {
   artistas: Artista[];
   musicas: {
     nome: string;
-    artistsas: Artista[];
+    artistas: Artista[];
   }[];
 }
 export interface FileProps {

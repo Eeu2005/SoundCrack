@@ -19,18 +19,29 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
     reply.status(400).send(err);
   });
 
-  fastify.get("/albuns", async (request, reply) => {
-    if(request.session.user !== undefined &&  request.session.user.tipo === "admin"){
-    const albuns =await getAlbumAdmin()
-    return albuns;
+  fastify.get(
+    "/albuns",
+    {
+      schema: {
+        querystring: z.object({
+          page: z.coerce.number().default(1),
+          per_page: z.coerce.number().default(10),
+        }),
+      },
+    },
+    async (request, reply) => {
+      const { query } = request;
+      if (
+        request.session.user !== undefined &&
+        request.session.user.tipo === "admin"
+      ) {
+        const albuns = await getAlbumAdmin(query);
+        return albuns;
+      }
+      const albuns = await getAlbum(query);
+      return albuns;
     }
-    const albuns = await getAlbum();
-    albuns.forEach(
-      (album) =>
-        (album.capa = request.protocol + "://" + request.host + album.capa)
-    );
-    return albuns;
-  });
+  );
 
   fastify.get(
     "/albuns/:id",
@@ -50,7 +61,6 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
       }else{
         album = await getOneAlbum(id);
       }
-      // album.capa = request.protocol + "://" + request.host + album.capa;
       return album
     }
   );
