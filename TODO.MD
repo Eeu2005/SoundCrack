@@ -1,4 +1,6 @@
-- 1 Refazer em React
-- 2 terminar emails
-- 3 dockernizar tudo
-- 4 Normalizar a seed
+- 1 Adicionar testes
+- 2 Refazer em React
+- 3 terminar emails
+- 4 dockernizar tudo
+- 5 Normalizar a seed
+
