@@ -1,12 +1,12 @@
 import { connect } from "mongoose";
 import albuns from "./seed/seedAlbuns.json" with {type:"json"};
 import user from "./seed/userSeed.json" with {type:"json"};
-import { modelArtista } from "./src/models/artista.model.ts";
+import { modelArtista } from "./src/models/artista.model.js";
 import { get } from "https";
 import { createWriteStream, existsSync, mkdirSync, rmSync, writeFileSync } from "fs";
-import { modelAlbum } from "./src/models/albun.model.ts";
-import { env } from "./env.ts";
-import { modelUsers } from "./src/models/users.model.ts";
+import { modelAlbum } from "./src/models/albun.model.js";
+import { env } from "./env.js"
+import { modelUsers } from "./src/models/users.model.js";
 import { hashSync} from "bcrypt"
 const con =await connect(env.CONN_STR, {
   dbName: "soundcrack_db",

@@ -54,7 +54,19 @@ interface Musica{
     albuns:Id[]
   }
 declare module "fastify" {
+  interface FastifyInstance{
+     betterClose():void
+  }
   interface Session {
     user:User 
   }
+}
+declare  global{
+ interface ImportMeta {
+   dirname: string;
+   filename: string;
+   main: boolean;
+   resolve: () => boolean;
+   url: string;
+ }
 }

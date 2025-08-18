@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer"
-import { env } from "../../env.ts"
+import { env } from "../../env.js"
 import type { Album, User } from "../types.js";
 const tranponder = nodemailer.createTransport({
   host:env.MAILHOST,
