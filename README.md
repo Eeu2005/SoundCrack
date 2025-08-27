@@ -7,10 +7,10 @@ Soundcrack é um projeto full-stack de um e-commerce de discos de músicas. Ele 
 ## Tecnologias Utilizadas
 ### Backend
 
-- Fastify
-- Mongoose
-- Zod
-- Bcrypt
+- Fastify para servidor
+- Mongoose\mongoDB   para banco de dados 
+- Zod  para serilização e validar entradas de usuarios
+- tapjs para testes automatizados  
 
 ### Frontend
 
