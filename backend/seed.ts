@@ -3,11 +3,12 @@ import albuns from "./seed/seedAlbuns.json" with {type:"json"};
 import user from "./seed/userSeed.json" with {type:"json"};
 import { modelArtista } from "./src/models/artista.model.js";
 import { get } from "https";
-import { createWriteStream, existsSync, mkdirSync, rmSync, writeFileSync } from "fs";
+import { createWriteStream } from "fs";
 import { modelAlbum } from "./src/models/albun.model.js";
 import { env } from "./env.js"
 import { modelUsers } from "./src/models/users.model.js";
 import { hashSync} from "bcrypt"
+import { emptyDir } from "./src/helpers/emptyDir.js";
 const con =await connect(env.CONN_STR, {
   dbName: "soundcrack_db",
 });
@@ -37,14 +38,7 @@ const fetchImage =(imagem:string,caminho:string)=>{
 
 
 
-
-
-
-
-rmSync("./public/",{force:true,recursive:true,})
-mkdirSync("./public")
-writeFileSync("./public/.gitkeep","",)
-
+emptyDir("./public",".gitkeep")
 await Promise.all([modelAlbum.deleteMany().exec(),modelArtista.deleteMany().exec(),modelUsers.deleteMany().exec()])
 
 for (const album of albuns){
@@ -71,7 +65,6 @@ for (const album of albuns){
       mus.artistas
         .filter((e) => typeof e === "object")
         .map((ar) => {
-          // ts-ignore
           if(!ar?.imagem) return
           let caminho = "/public/" + Date.now().toString() + "artista.jpeg";
           fetchImage(ar.imagem,caminho);

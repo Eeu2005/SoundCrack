@@ -1,105 +1,105 @@
 [
-{
-  "nome":"ao que tudo indica, não somos o centro do universo",
-  "artista":[
-    {
-      "nome":"cactø",
-      "imagem":"https://i.scdn.co/image/ab6761610000e5eb0c9c4cb69f64ffc02f563834"
-  }
-  ],
-  "genero":"indie",
-  "disco":"https://i.scdn.co/image/ab6761610000e5eb0c9c4cb69f64ffc02f563834",
-  "imagem":"https://i.scdn.co/image/ab6761610000e5eb0c9c4cb69f64ffc02f563834",
-  "musicas": [
-    "espero que goste, ou não",
-    "ao que tudo indica, não somos o centro do universo",
-    "AUD",
-    "interlúdio",
-    "burocracia",
-    "não durmo a tarde, fico pensando em você",
-    "já passou da hora de dormir"
-  ],
-  "preco":"50.00"
-},
-{
-  "nome": "Ana E Jorge (Ao Vivo)",
-  "genero": "Samba",
-  "preco": "40.00",
-  "artista": [
-    {
-      "nome": "Ana Carolina",
-      "imagem": "https://i.scdn.co/image/ab6761610000e5eb787e90f9431758e97ab8e95d" 
-    },
-    {
-      "nome": "Seu Jorge",
-      "imagem": "https://i.scdn.co/image/ab6761610000e5eba124f650946041fc26b0379b" 
-    }
-  ],
-  "imagem": "https://i.scdn.co/image/ab67616d0000b27334a6489b2e9ae80ad3b57cbf",
-  "disco": "https://i.scdn.co/image/ab67616d0000b27334a6489b2e9ae80ad3b57cbf",
-  "musicas": [
-    {
-      "nome": "São Gonça - Ao Vivo",
-      "artistas": ["Seu Jorge"]
-    },
-    {
-      "nome": "Problema Social - Ao Vivo",
-      "artistas": ["Seu Jorge"]
-    },
-    {
-      "nome": "Zé do Caroço - Ao Vivo",
-      "artistas": ["Seu Jorge"]
-    },
-    {
-      "nome": "Carolina - Ao Vivo",
-      "artistas": ["Seu Jorge"]
-    },
-    {
-      "nome": "Comparsas/O Pequenez E O Pit Bull - Ao Vivo",
-      "artistas": ["Ana Carolina", "Seu Jorge"]
-    },
-    {
-      "nome": "Tanta Saudade - Ao Vivo",
-      "artistas": ["Ana Carolina", "Seu Jorge"]
-    },
-    {
-      "nome": "É Isso Aí (The Blower'S Daughter) - Ao Vivo",
-      "artistas": ["Ana Carolina", "Seu Jorge"]
-    },
-    {
-      "nome": "Prá Rua Me Levar - Ao Vivo",
-      "artistas": ["Ana Carolina", "Seu Jorge"]
-    },
-    {
-      "nome": "Chatterton - Ao Vivo",
-      "artistas": ["Ana Carolina", "Seu Jorge"]
-    },
-    {
-      "nome": "Beatriz - Ao Vivo",
-      "artistas": ["Ana Carolina"]
-    },
-    {
-      "nome": "Brasil Corrupção (Unimultiplicidade) - Ao Vivo",
-      "artistas": ["Ana Carolina"]
-    },
-    {
-      "nome": "Mais Que Isso - Ao Vivo",
-      "artistas": ["Ana Carolina"]
-    },
-    {
-      "nome": "Garganta - Ao Vivo",
-      "artistas": ["Ana Carolina", "Seu Jorge"]
-    },
-    {
-      "nome": "Vestido Estampado - Ao Vivo",
-      "artistas": ["Ana Carolina", "Seu Jorge"]
-    },
-    {
-      "nome": "O Beat Da Beata - Ao Vivo",
-      "artistas": ["Ana Carolina", "Seu Jorge"]
-    }
-  ]
-},
+  {
+    "nome": "ao que tudo indica, não somos o centro do universo",
+    "artista": [
+      {
+        "nome": "cactø",
+        "imagem": "https://i.scdn.co/image/ab6761610000e5eb0c9c4cb69f64ffc02f563834"
+      }
+    ],
+    "genero": "indie",
+    "disco": "https://i.scdn.co/image/ab6761610000e5eb0c9c4cb69f64ffc02f563834",
+    "imagem": "https://i.scdn.co/image/ab6761610000e5eb0c9c4cb69f64ffc02f563834",
+    "musicas": [
+      "espero que goste, ou não",
+      "ao que tudo indica, não somos o centro do universo",
+      "AUD",
+      "interlúdio",
+      "burocracia",
+      "não durmo a tarde, fico pensando em você",
+      "já passou da hora de dormir"
+    ],
+    "preco": 50.0
+  },
+  {
+    "nome": "Ana E Jorge (Ao Vivo)",
+    "genero": "Samba",
+    "preco": 40.0,
+    "artista": [
+      {
+        "nome": "Ana Carolina",
+        "imagem": "https://i.scdn.co/image/ab6761610000e5eb787e90f9431758e97ab8e95d"
+      },
+      {
+        "nome": "Seu Jorge",
+        "imagem": "https://i.scdn.co/image/ab6761610000e5eba124f650946041fc26b0379b"
+      }
+    ],
+    "imagem": "https://i.scdn.co/image/ab67616d0000b27334a6489b2e9ae80ad3b57cbf",
+    "disco": "https://i.scdn.co/image/ab67616d0000b27334a6489b2e9ae80ad3b57cbf",
+    "musicas": [
+      {
+        "nome": "São Gonça - Ao Vivo",
+        "artistas": ["Seu Jorge"]
+      },
+      {
+        "nome": "Problema Social - Ao Vivo",
+        "artistas": ["Seu Jorge"]
+      },
+      {
+        "nome": "Zé do Caroço - Ao Vivo",
+        "artistas": ["Seu Jorge"]
+      },
+      {
+        "nome": "Carolina - Ao Vivo",
+        "artistas": ["Seu Jorge"]
+      },
+      {
+        "nome": "Comparsas/O Pequenez E O Pit Bull - Ao Vivo",
+        "artistas": ["Ana Carolina", "Seu Jorge"]
+      },
+      {
+        "nome": "Tanta Saudade - Ao Vivo",
+        "artistas": ["Ana Carolina", "Seu Jorge"]
+      },
+      {
+        "nome": "É Isso Aí (The Blower'S Daughter) - Ao Vivo",
+        "artistas": ["Ana Carolina", "Seu Jorge"]
+      },
+      {
+        "nome": "Prá Rua Me Levar - Ao Vivo",
+        "artistas": ["Ana Carolina", "Seu Jorge"]
+      },
+      {
+        "nome": "Chatterton - Ao Vivo",
+        "artistas": ["Ana Carolina", "Seu Jorge"]
+      },
+      {
+        "nome": "Beatriz - Ao Vivo",
+        "artistas": ["Ana Carolina"]
+      },
+      {
+        "nome": "Brasil Corrupção (Unimultiplicidade) - Ao Vivo",
+        "artistas": ["Ana Carolina"]
+      },
+      {
+        "nome": "Mais Que Isso - Ao Vivo",
+        "artistas": ["Ana Carolina"]
+      },
+      {
+        "nome": "Garganta - Ao Vivo",
+        "artistas": ["Ana Carolina", "Seu Jorge"]
+      },
+      {
+        "nome": "Vestido Estampado - Ao Vivo",
+        "artistas": ["Ana Carolina", "Seu Jorge"]
+      },
+      {
+        "nome": "O Beat Da Beata - Ao Vivo",
+        "artistas": ["Ana Carolina", "Seu Jorge"]
+      }
+    ]
+  },
   {
     "nome": "The Normal Album",
     "artista": [
@@ -108,8 +108,8 @@
         "imagem": "https://i.scdn.co/image/ab6761610000e5eb31a821c125d5627614836483"
       }
     ],
-    "genero":"Jazz",
-    "preco":"70.00",
+    "genero": "Jazz",
+    "preco": 70.0,
     "imagem": "https://i.scdn.co/image/ab67616d0000b273fa5af56e2be9d093cafb41f3",
     "disco": "https://i.scdn.co/image/ab67616d0000b273fa5af56e2be9d093cafb41f3",
     "musicas": [
@@ -134,8 +134,8 @@
       }
     ],
     "genero": "Jazz",
-    "preco":"40.00",
-  
+    "preco": 40.0,
+
     "imagem": "https://i.scdn.co/image/ab67616d0000b273ce8658e6c2ea9cc5dd2a7e57",
     "disco": "https://i.scdn.co/image/ab67616d0000b273ce8658e6c2ea9cc5dd2a7e57",
     "musicas": [
@@ -172,13 +172,13 @@
     ],
     "imagem": "https://i.scdn.co/image/ab67616d0000b2736ea30ddf21962772d4c08b0a",
     "disco": "https://i.scdn.co/image/ab67616d0000b2736ea30ddf21962772d4c08b0a",
-    "preco": "80.00"
+    "preco": 80.0
   },
 
   {
     "nome": "Chonny Chaos Compendium Complete",
     "genero": "indie",
-    "preco": "80.00",
+    "preco": 80.0,
     "artista": [
       {
         "nome": "Chonny Jash",
@@ -220,7 +220,7 @@
   {
     "nome": "supercombo",
     "genero": "Rock",
-    "preco": "60.00",
+    "preco": 60.0,
     "artista": [
       {
         "nome": "supercombo",
@@ -272,7 +272,7 @@
   {
     "nome": "Gatuno",
     "genero": "Bommbap",
-    "preco": "70.00",
+    "preco": 70.0,
     "artista": [
       {
         "nome": "alec'",

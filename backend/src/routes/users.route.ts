@@ -43,6 +43,7 @@ export const UsersRoute: FastifyPluginAsyncZod = async (fastify) => {
       const { email, senha } = request.body;
       const user = await loginUsuario(email, senha);
       request.session.user = user;
+      return reply.status(201).send("Logado")
     }
   );
 
@@ -50,8 +51,8 @@ export const UsersRoute: FastifyPluginAsyncZod = async (fastify) => {
     if (!req.session.user) {
       return res.status(401).send("não logado");
     }
-    let a = await req.session.user.populate("albuns");
-    console.log(a);
-    return res.send(req.session.user);
+    const {user} = req.session
+    const resUser={id:user._id,nome:user.nome,email:user.email,tipo:user.tipo}
+    return res.send(resUser);
   });
 };

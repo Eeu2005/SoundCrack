@@ -9,9 +9,6 @@ import { z } from "zod";
 export const RouteArtistas: FastifyPluginAsyncZod = async (fastify) => {
   fastify.get("/artistas", async (request, reply) => {
     const artistas = await getArtistas();
-    if (artistas.length <= 0) {
-      return reply.status(204).send();
-    }
     return reply.status(200).send(artistas);
   });
   fastify.get(
@@ -60,7 +57,8 @@ export const RouteArtistas: FastifyPluginAsyncZod = async (fastify) => {
           .send("Você precisa estar logado para fazer isso");
       }
       const { imagem, nome } = request.body;
-      return await setArtista(nome, { fieldname: "imagem", buffer: imagem });
+       reply.status(201)
+        return setArtista(nome, { fieldname: "imagem", buffer: imagem });
     }
   );
 };

@@ -8,6 +8,7 @@ import { z } from "zod";
      MAILUSER: z.string(),
      MAILKEY:z.string(),
      MAILHOST:z.string(),
+     EM_TESTE:z.coerce.boolean()
    })
    .parse(process.env);
 

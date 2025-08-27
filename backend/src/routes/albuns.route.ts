@@ -9,6 +9,7 @@ import {
   getAlbumAdmin,
   atualizarSituacao,
   getOneAlbumAdmin,
+  searchAlbum,
 } from "../controllers/albuns.controller.js";
 import { z } from "zod";
 import type { AlbumPopulado, FileProps } from "../types.js";
@@ -40,6 +41,21 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
       }
       const albuns = await getAlbum(query);
       return albuns;
+    }
+  );
+
+fastify.get(
+    "/albuns/search/:nome",
+    {
+      schema: {
+        params: z.object({
+          nome: z.string(),
+        }),
+      },
+    },
+    (req, res) => {
+      const { nome } = req.params;
+      return searchAlbum(nome);
     }
   );
 
@@ -79,8 +95,8 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
         body: z.object({
           nome: z.string(),
           genero: z.string(),
-          preco: z.coerce.number(),
-          artistas: z.string().or(z.string().array()),
+          preco: z.coerce.number().nonnegative(),
+          artistas:z.array(z.string()).or(z.string()),
           capa: z.custom<Buffer>(),
           disco: z.custom<Buffer>(),
         }),
@@ -94,17 +110,17 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
       }
       const { artistas, nome, capa, disco, genero, preco } = request.body;
       const { id: publicante } = request.session.user;
-      console.log(publicante);
       const files: FileProps[] = [
         { fieldname: "capa", buffer: capa },
         { fieldname: "disco", buffer: disco },
       ];
+      let artistasArr = Array.isArray(artistas) ? artistas : [artistas];
       const album = await setAlbum(
-        { artistas, nome, genero, preco, publicante },
+        { artistas:artistasArr, nome, genero, preco, publicante },
         files
       );
       EmailNovoAlbum(album, request.session.user);
-      return reply.status(201).send(album._id);
+      return reply.status(201).send(album);
     }
   );
   fastify.post(
@@ -124,7 +140,7 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
     },
     async (request, reply) => {
       const { params, body } = request;
-      const { id: idUser } = request.session.user;
+      const { _id: idUser } = request.session.user;
       if (!idUser) {
         return reply
           .status(401)
@@ -158,8 +174,12 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
       }
       const { id } = request.params;
       const { status } = request.body;
-      await atualizarSituacao(id, status);
-      return reply.status(200).send("Situação atualizada");
+     
+      const statusRes = await atualizarSituacao(id, status);
+      return reply.status(200).send({
+        status: statusRes,
+        message: "Situação atualizada",
+      });
     }
   );
 };

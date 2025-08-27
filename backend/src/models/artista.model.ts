@@ -8,11 +8,6 @@ export const SchemaArtistas = new mongoose.Schema({
     imagem: {
     required: true,
     type: String,
-  },
-  aprovado:{
-    required:true,
-    type:Boolean,
-    default:false
   }
 });
 export const modelArtista =  mongoose.model<Artista>("Artistas",SchemaArtistas)

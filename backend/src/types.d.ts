@@ -36,7 +36,7 @@ export interface FileProps {
 interface PropsAlbum {
   nome: string;
   preco:number
-  artistas: string[] | string;
+  artistas: string[] ;
   genero: string;
   publicante:string
 }
@@ -55,7 +55,7 @@ interface Musica{
   }
 declare module "fastify" {
   interface FastifyInstance{
-     betterClose():void
+     betterClose(con:Mongoose):void
   }
   interface Session {
     user:User 

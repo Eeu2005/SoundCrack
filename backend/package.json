@@ -7,7 +7,6 @@
   "description": "backend do soundcrack",
   "type": "module",
   "scripts": {
-    "test:watch": "tap --watch --node-arg=--env-file=./.env test/   ",
     "test": "tap --node-arg=--env-file=./.env test/ ",
     "dev": "tsx --env-file=./.env app.ts",
     "watch": "tsx watch  --env-file=./.env app.ts ",
@@ -31,6 +30,7 @@
     "@types/busboy": "^1.5.4",
     "@types/node": "^22.17.1",
     "@types/nodemailer": "^6.4.17",
+    "form-data": "^4.0.4",
     "tap": "^21.1.0",
     "tsx": "^4.19.2"
   }
