@@ -18,7 +18,7 @@ interface Album{
   aprovado:boolean,
   musicas:{
     nome:string,
-    artistsas:Id[]
+    artistas:Id[]
   }[],
   publicante:User
 }
@@ -26,7 +26,7 @@ interface AlbumPopulado extends Album {
   artistas: Artista[];
   musicas: {
     nome: string;
-    artistsas: Artista[];
+    artistas: Artista[];
   }[];
 }
 export interface FileProps {
@@ -36,7 +36,7 @@ export interface FileProps {
 interface PropsAlbum {
   nome: string;
   preco:number
-  artistas: string[] | string;
+  artistas: string[] ;
   genero: string;
   publicante:string
 }
@@ -54,7 +54,19 @@ interface Musica{
     albuns:Id[]
   }
 declare module "fastify" {
+  interface FastifyInstance{
+     betterClose(con:Mongoose):void
+  }
   interface Session {
     user:User 
   }
+}
+declare  global{
+ interface ImportMeta {
+   dirname: string;
+   filename: string;
+   main: boolean;
+   resolve: () => boolean;
+   url: string;
+ }
 }

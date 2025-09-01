@@ -1,6 +1,7 @@
-import { writeFileSync } from "fs"
+import { writeFile } from "fs/promises"
 import path from "path/win32"
-export function fazerArquivo(File:Buffer,nome:string) {
+export async function fazerArquivo(File:Buffer,nome:string) {
+
   const date = Date.now();
   const caminho = path.join(
     import.meta.dirname,
@@ -9,8 +10,8 @@ export function fazerArquivo(File:Buffer,nome:string) {
     "public",
     date.toString()+nome + ".jpeg"
   );
-  console.log(typeof File)
-  writeFileSync(caminho,File)
+  console.log(caminho)
+  writeFile(caminho,File)
 
 return "/public/"+date.toString()+nome+".jpeg";
 }

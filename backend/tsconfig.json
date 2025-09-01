@@ -4,16 +4,17 @@
   "_version": "23.0.0",
   "compilerOptions": {
     "lib": [
-      "es2024"
+      "ESNext"
     ],
+    "outDir": "./out",
     "resolveJsonModule": true,
-    "allowImportingTsExtensions":true,
-    "noEmit": true,
-    "module": "NodeNext",
-    "target": "es2024",
+    "allowImportingTsExtensions":false,
+    "noEmit": false,
+    "module": "nodenext",
+    "target": "esnext",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "node16"
+    "moduleResolution": "nodenext"
   }
 }

@@ -1,14 +1,23 @@
 import nodemailer from "nodemailer"
-import { env } from "../../env.ts"
+import type {SendMailOptions} from "nodemailer"
+import { env } from "../../env.js"
 import type { Album, User } from "../types.js";
-const tranponder = nodemailer.createTransport({
-  host:env.MAILHOST,
-  port:2525,
-  auth:{
-    user:env.MAILUSER,
-    pass:env.MAILKEY
-  }
-})
+const tranponder = !env.EM_TESTE
+  ? nodemailer.createTransport({
+      host: env.MAILHOST,
+      port: 2525,
+      auth: {
+        user: env.MAILUSER,
+        pass: env.MAILKEY,
+      },
+    })
+  : {
+      sendMail:async ({to,subject,text,html}:SendMailOptions):Promise<void> =>console.log(`
+        Simulando o envio de email para ${to} sobre ${subject}
+        ${html??text}
+        `),
+      verify:():Promise<true> => Promise.resolve(true)
+    };
 tranponder.verify()
 export async function EmailOla(user:User) {
   tranponder
@@ -16,7 +25,7 @@ export async function EmailOla(user:User) {
       from: "<noreply.soundcrack@mail.com>",
       to: user.email,
       subject: "Ola de SoundCrack",
-      text: `Bem vindo Ao Sound Crack ,${user.nome} 
+      text: `Bem vindo Ao Sound Crack ,<b>${user.nome}</b>
       O lugar onde Aquele disco que estava buscando esta aqui!`,
     })
     .catch((e) => {
@@ -30,8 +39,8 @@ export async function EmailNovoAlbum(album:Album,user: User) {
       from: "<noreply.soundcrack@mail.com>",
       to: user.email,
       subject: "Confirmação da publicação do album",
-      html: `Obrigado por Compartilhar o disco ${album.nome} 
-      aguarde o processo de aceitação do ${album.nome} 
+      html: `Obrigado por Compartilhar o disco <b>${album.nome}</b>
+      aguarde o processo de aceitação do  <b>${album.nome}</b
       `,
     })
     .catch((e) => {
@@ -39,7 +48,7 @@ export async function EmailNovoAlbum(album:Album,user: User) {
       console.error(e);
     });
 }
-export async function StatusAlbum(album:Album,user:User) {
+export async function emailStatusAlbum(album:Album,user:User) {
   tranponder
     .sendMail({
       from: "<noreply.soundcrack@mail.com>",

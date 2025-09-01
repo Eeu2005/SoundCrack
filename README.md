@@ -7,10 +7,10 @@ Soundcrack é um projeto full-stack de um e-commerce de discos de músicas. Ele 
 ## Tecnologias Utilizadas
 ### Backend
 
-- Fastify
-- Mongoose
-- Zod
-- Bcrypt
+- Fastify para servidor
+- Mongoose\mongoDB   para banco de dados 
+- Zod  para serilização e validar entradas de usuarios
+- tapjs para testes automatizados  
 
 ### Frontend
 
@@ -31,11 +31,17 @@ Soundcrack é um projeto full-stack de um e-commerce de discos de músicas. Ele 
 - Node.js instalado
 - Docker instalado
 
+### Clone o repositorio
+  
+  ```sh
+   git clone https://github.com/Eeu2005/SoundCrack.git 
+   ```
+
 ### Rodando o Backend
 
 1. Navegue até o diretório do backend:
    ```sh
-   cd /C:/manu/soundcrack/backend
+   cd SoundCrack/backend
    ```
 2. Inicie o MongoDB com Docker Compose:
    ```sh
@@ -58,7 +64,7 @@ Soundcrack é um projeto full-stack de um e-commerce de discos de músicas. Ele 
 
 1. Navegue até o diretório do frontend:
    ```sh
-   cd /C:/manu/soundcrack/frontend
+   cd SoundCrack/frontend
    ```
 2. Instale as dependências:
    ```sh

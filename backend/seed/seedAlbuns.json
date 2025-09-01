@@ -1,115 +1,281 @@
 [
   {
-    "nome": "Chonny Chaos Compedium Complete",
+    "nome": "ao que tudo indica, não somos o centro do universo",
+    "artista": [
+      {
+        "nome": "cactø",
+        "imagem": "https://i.scdn.co/image/ab6761610000e5eb0c9c4cb69f64ffc02f563834"
+      }
+    ],
     "genero": "indie",
-    "preco":"80.00",
+    "disco": "https://i.scdn.co/image/ab67616d0000b27326bccc0e2cb311e3bbfed6d2",
+    "imagem": "https://i.scdn.co/image/ab67616d0000b27326bccc0e2cb311e3bbfed6d2",
+    "musicas": [
+      "espero que goste, ou não",
+      "ao que tudo indica, não somos o centro do universo",
+      "AUD",
+      "interlúdio",
+      "burocracia",
+      "não durmo a tarde, fico pensando em você",
+      "já passou da hora de dormir"
+    ],
+    "preco": 50.0
+  },
+  {
+    "nome": "Ana E Jorge (Ao Vivo)",
+    "genero": "Samba",
+    "preco": 40.0,
+    "artista": [
+      {
+        "nome": "Ana Carolina",
+        "imagem": "https://i.scdn.co/image/ab6761610000e5eb787e90f9431758e97ab8e95d"
+      },
+      {
+        "nome": "Seu Jorge",
+        "imagem": "https://i.scdn.co/image/ab6761610000e5eba124f650946041fc26b0379b"
+      }
+    ],
+    "imagem": "https://i.scdn.co/image/ab67616d0000b27334a6489b2e9ae80ad3b57cbf",
+    "disco": "https://i.scdn.co/image/ab67616d0000b27334a6489b2e9ae80ad3b57cbf",
+    "musicas": [
+      {
+        "nome": "São Gonça - Ao Vivo",
+        "artistas": ["Seu Jorge"]
+      },
+      {
+        "nome": "Problema Social - Ao Vivo",
+        "artistas": ["Seu Jorge"]
+      },
+      {
+        "nome": "Zé do Caroço - Ao Vivo",
+        "artistas": ["Seu Jorge"]
+      },
+      {
+        "nome": "Carolina - Ao Vivo",
+        "artistas": ["Seu Jorge"]
+      },
+      {
+        "nome": "Comparsas/O Pequenez E O Pit Bull - Ao Vivo",
+        "artistas": ["Ana Carolina", "Seu Jorge"]
+      },
+      {
+        "nome": "Tanta Saudade - Ao Vivo",
+        "artistas": ["Ana Carolina", "Seu Jorge"]
+      },
+      {
+        "nome": "É Isso Aí (The Blower'S Daughter) - Ao Vivo",
+        "artistas": ["Ana Carolina", "Seu Jorge"]
+      },
+      {
+        "nome": "Prá Rua Me Levar - Ao Vivo",
+        "artistas": ["Ana Carolina", "Seu Jorge"]
+      },
+      {
+        "nome": "Chatterton - Ao Vivo",
+        "artistas": ["Ana Carolina", "Seu Jorge"]
+      },
+      {
+        "nome": "Beatriz - Ao Vivo",
+        "artistas": ["Ana Carolina"]
+      },
+      {
+        "nome": "Brasil Corrupção (Unimultiplicidade) - Ao Vivo",
+        "artistas": ["Ana Carolina"]
+      },
+      {
+        "nome": "Mais Que Isso - Ao Vivo",
+        "artistas": ["Ana Carolina"]
+      },
+      {
+        "nome": "Garganta - Ao Vivo",
+        "artistas": ["Ana Carolina", "Seu Jorge"]
+      },
+      {
+        "nome": "Vestido Estampado - Ao Vivo",
+        "artistas": ["Ana Carolina", "Seu Jorge"]
+      },
+      {
+        "nome": "O Beat Da Beata - Ao Vivo",
+        "artistas": ["Ana Carolina", "Seu Jorge"]
+      }
+    ]
+  },
+  {
+    "nome": "The Normal Album",
+    "artista": [
+      {
+        "nome": "Will Wood",
+        "imagem": "https://i.scdn.co/image/ab6761610000e5eb31a821c125d5627614836483"
+      }
+    ],
+    "genero": "Jazz",
+    "preco": 70.0,
+    "imagem": "https://i.scdn.co/image/ab67616d0000b273fa5af56e2be9d093cafb41f3",
+    "disco": "https://i.scdn.co/image/ab67616d0000b273fa5af56e2be9d093cafb41f3",
+    "musicas": [
+      "Suburbia Overture / Greetings from Mary Bell Township! / (Vampire) Culture / Love Me, Normally",
+      "2econd 2ight 2eer (that was fun, goodbye.)",
+      "Laplace’s Angel (Hurt People? Hurt People!)",
+      "I / Me / Myself",
+      "…well, better than the alternative",
+      "Outliars and Hyppocrates: a fun fact about apple",
+      "BlackBoxWarrior - OKULTRA",
+      "Marsha, Thankk You for the Dialectics, but I Need You to Leave",
+      "Love, Me Normally",
+      "Memento Mori: the most important thing in the world"
+    ]
+  },
+  {
+    "nome": "SELF-iSH",
+    "artista": [
+      {
+        "nome": "Will Wood and the Tapeworms",
+        "imagem": "https://i.scdn.co/image/ab6761610000e5eb4e8d581df09ed8d0fa0f81a2"
+      }
+    ],
+    "genero": "Jazz",
+    "preco": 40.0,
+
+    "imagem": "https://i.scdn.co/image/ab67616d0000b273ce8658e6c2ea9cc5dd2a7e57",
+    "disco": "https://i.scdn.co/image/ab67616d0000b273ce8658e6c2ea9cc5dd2a7e57",
+    "musicas": [
+      "Self-",
+      "2012",
+      "Cotard's Solution (Anatta, Dukkha, Anicca)",
+      "Mr. Capgras Encounters a Secondhand Vanity: Tulpamancer's Prosopagnosia / Pareidolia (As Direct Result of Trauma to Fusiform Gyrus)",
+      "The Song with Five Names a.k.a. Soapbox Tao a.k.a. Checkmate Atheists! a.k.a. Neospace Government (A.K.A. You Can Never Know) Will Wood and th",
+      "Hand Me My Shovel, I'm Going In!",
+      "Dr. Sunshine Is Dead",
+      "-ish"
+    ]
+  },
+  {
+    "nome": "Vida vale a pena?",
+    "artista": [
+      {
+        "nome": "Pullovers",
+        "imagem": "https://i.scdn.co/image/ab6761610000e5eb584bef0b806301fcb0782b49"
+      }
+    ],
+    "genero": "Rock",
+    "musicas": [
+      "Vida vale a pena",
+      "Mais do mesmo",
+      "Não se mate",
+      "Fim",
+      "Poeira de estrela",
+      "Xi",
+      "Pai",
+      "Antideprê",
+      "Não sei",
+      "Não se mate II"
+    ],
+    "imagem": "https://i.scdn.co/image/ab67616d0000b2736ea30ddf21962772d4c08b0a",
+    "disco": "https://i.scdn.co/image/ab67616d0000b2736ea30ddf21962772d4c08b0a",
+    "preco": 80.0
+  },
+
+  {
+    "nome": "Chonny Chaos Compendium Complete",
+    "genero": "indie",
+    "preco": 80.0,
     "artista": [
       {
         "nome": "Chonny Jash",
         "imagem": "https://i.scdn.co/image/ab6761610000e5ebb413bc61ba3cdc4bcfff188a"
       }
     ],
-      "musicas":[
-        "Time Machine Reprise",
-        "Dream (Outro from Calamity)",
-        "Mucka Blucka (Intro to Cacophony)",
-        "Never Meant to Know",
-        "Spring and a Storm",
-        "Night",
-        "Ruler of Everything",
-        "Good Day",
-        "Just Apathy",
-        "The Heart Acoustic",
-        "Be Born",
-        "Storm and a Spring",
-        "The Mind Electric",
-        "The Soul Eclectic",
-        "The Bidding",
-        "Light",
-        "We're Gonna Win",
-        "Two Wuv",
-        "Variations on a Cloud",
-        "The Whole World & You (Outro from Cacophony)",
-        "Welcome to Tally Hall (Intro to Concord)",
-        "Banana Man",
-        "Haiku",
-        "Hidden in the Sand",
-        "Greener",
-        "Special",
-        "Taken for a Ride"
-      ],
+    "musicas": [
+      "Time Machine Reprise",
+      "Dream (Outro from Calamity)",
+      "Mucka Blucka (Intro to Cacophony)",
+      "Never Meant to Know",
+      "Spring and a Storm",
+      "Night",
+      "Ruler of Everything",
+      "Good Day",
+      "Just Apathy",
+      "The Heart Acoustic",
+      "Be Born",
+      "Storm and a Spring",
+      "The Mind Electric",
+      "The Soul Eclectic",
+      "The Bidding",
+      "Light",
+      "We're Gonna Win",
+      "Two Wuv",
+      "Variations on a Cloud",
+      "The Whole World & You (Outro from Cacophony)",
+      "Welcome to Tally Hall (Intro to Concord)",
+      "Banana Man",
+      "Haiku",
+      "Hidden in the Sand",
+      "Greener",
+      "Special",
+      "Taken for a Ride"
+    ],
     "imagem": "https://i.scdn.co/image/ab67616d0000b2735011018cca4aa7091e08ae93",
     "disco": "https://i.scdn.co/image/ab67616d0000b2735011018cca4aa7091e08ae93"
-  },{
-    "nome":"supercombo",
-    "genero":"Rock",
-    "preco":"60.00",
-    "artista":[{
-      "nome":"supercombo",
-      "imagem":"https://i.scdn.co/image/ab6761610000e5ebb3f80b4c25759ea6d72907b4"
-    }],
-    "disco":"https://i.scdn.co/image/ab67616d0000b27323ad7415e0d5fe197db5f321",
-    "imagem":"https://i.scdn.co/image/ab67616d0000b27323ad7415e0d5fe197db5f321",
-    "musicas":[
+  },
+  {
+    "nome": "supercombo",
+    "genero": "Rock",
+    "preco": 60.0,
+    "artista": [
+      {
+        "nome": "supercombo",
+        "imagem": "https://i.scdn.co/image/ab6761610000e5ebb3f80b4c25759ea6d72907b4"
+      }
+    ],
+    "disco": "https://i.scdn.co/image/ab67616d0000b27323ad7415e0d5fe197db5f321",
+    "imagem": "https://i.scdn.co/image/ab67616d0000b27323ad7415e0d5fe197db5f321",
+    "musicas": [
       {
         "nome": "Farol",
-        "artistas": [
-          "supercombo"
-        ]
+        "artistas": ["supercombo"]
       },
       {
         "nome": "Saudade",
-        "artistas": [
-          "supercombo"
-        ]
+        "artistas": ["supercombo"]
       },
       {
         "nome": "Gravidade",
-        "artistas": [
-          "supercombo"
-        ]
+        "artistas": ["supercombo"]
       },
       {
         "nome": "Cebolas",
         "artistas": [
+          "supercombo",
           {
-            "nome": "supercombo",
-            "imagem": "https://i.scdn.co/image/ab6761610000e5ebb3f80b4c25759ea6d72907b4"
-          },
-          {
-            "nome":"Lucas Silveira",
-            "imagem":"https://i.scdn.co/image/ab6761610000e5eb315683944b3cbd361f46314c"
+            "nome": "Lucas Silveira",
+            "imagem": "https://i.scdn.co/image/ab6761610000e5eb315683944b3cbd361f46314c"
           }
         ]
       },
       {
         "nome": "Café Amargo",
-        "artistas": [
-          "supercombo"
-        ]
+        "artistas": ["supercombo"]
       },
       {
         "nome": "Labirintite",
-        "artistas": [
-          "supercombo"
-        ]
+        "artistas": ["supercombo"]
       },
       {
         "nome": "Sorte e Azar",
-        "artistas": [
-          "supercombo"
-        ]
+        "artistas": ["supercombo"]
       }
     ]
-  },{
+  },
+  {
     "nome": "Gatuno",
     "genero": "Bommbap",
-    "preco":"70.00",
+    "preco": 70.0,
     "artista": [
       {
         "nome": "alec'",
         "imagem": "https://i.scdn.co/image/ab6761610000e5eb8f1ee078a04efcbc52ea882b"
-      },{
+      },
+      {
         "nome": "sazack",
         "imagem": "https://i.scdn.co/image/ab6761610000e5eb87570157fc84594fb9be8bd6"
       }

@@ -9,28 +9,55 @@ import {
   getAlbumAdmin,
   atualizarSituacao,
   getOneAlbumAdmin,
-} from "../controllers/albuns.controller.ts";
+  searchAlbum,
+} from "../controllers/albuns.controller.js";
 import { z } from "zod";
 import type { AlbumPopulado, FileProps } from "../types.js";
-import { EmailNovoAlbum } from "../helpers/emails.ts";
+import { EmailNovoAlbum } from "../helpers/emails.js";
 
 export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
   fastify.setErrorHandler((err, request, reply) => {
     reply.status(400).send(err);
   });
 
-  fastify.get("/albuns", async (request, reply) => {
-    if(request.session.user !== undefined &&  request.session.user.tipo === "admin"){
-    const albuns =await getAlbumAdmin()
-    return albuns;
+  fastify.get(
+    "/albuns",
+    {
+      schema: {
+        querystring: z.object({
+          page: z.coerce.number().default(1),
+          per_page: z.coerce.number().default(10),
+        }),
+      },
+    },
+    async (request, reply) => {
+      const { query } = request;
+      if (
+        request.session.user !== undefined &&
+        request.session.user.tipo === "admin"
+      ) {
+        const albuns = await getAlbumAdmin(query);
+        return albuns;
+      }
+      const albuns = await getAlbum(query);
+      return albuns;
     }
-    const albuns = await getAlbum();
-    albuns.forEach(
-      (album) =>
-        (album.capa = request.protocol + "://" + request.host + album.capa)
-    );
-    return albuns;
-  });
+  );
+
+fastify.get(
+    "/albuns/search/:nome",
+    {
+      schema: {
+        params: z.object({
+          nome: z.string(),
+        }),
+      },
+    },
+    (req, res) => {
+      const { nome } = req.params;
+      return searchAlbum(nome);
+    }
+  );
 
   fastify.get(
     "/albuns/:id",
@@ -43,21 +70,23 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
     },
     async (request, reply) => {
       const { id } = request.params;
-      let  album:AlbumPopulado
+      let album: AlbumPopulado;
 
-      if(request.session.user !== undefined &&  request.session.user.tipo === "admin"){
-      album = await getOneAlbumAdmin(id);
-      }else{
+      if (
+        request.session.user !== undefined &&
+        request.session.user.tipo === "admin"
+      ) {
+        album = await getOneAlbumAdmin(id);
+      } else {
         album = await getOneAlbum(id);
       }
-      // album.capa = request.protocol + "://" + request.host + album.capa;
-      return album
+      return album;
     }
   );
-  fastify.get("/albuns/rand",async (request,reply)=>{
-    const album = await getRandonAlbum()
-    return album
-  })
+  fastify.get("/albuns/rand", async (request, reply) => {
+    const album = await getRandonAlbum();
+    return album;
+  });
 
   fastify.post(
     "/albuns",
@@ -66,27 +95,32 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
         body: z.object({
           nome: z.string(),
           genero: z.string(),
-          preco: z.coerce.number(),
-          artistas: z.string().or(z.string().array()),
+          preco: z.coerce.number().nonnegative(),
+          artistas:z.array(z.string()).or(z.string()),
           capa: z.custom<Buffer>(),
           disco: z.custom<Buffer>(),
         }),
       },
     },
     async (request, reply) => {
-      if(request.session.user === undefined){
-        return reply.status(401).send("Você precisa estar logado para fazer isso")
+      if (request.session.user === undefined) {
+        return reply
+          .status(401)
+          .send("Você precisa estar logado para fazer isso");
       }
-      const { artistas, nome, capa, disco, genero,preco } = request.body;
-      const {id:publicante} = request.session.user
-      console.log(publicante)
+      const { artistas, nome, capa, disco, genero, preco } = request.body;
+      const { id: publicante } = request.session.user;
       const files: FileProps[] = [
         { fieldname: "capa", buffer: capa },
         { fieldname: "disco", buffer: disco },
       ];
-     const album = await setAlbum({ artistas, nome, genero, preco,publicante }, files)
-      EmailNovoAlbum(album,request.session.user)
-    return reply.status(201).send(album._id);
+      let artistasArr = Array.isArray(artistas) ? artistas : [artistas];
+      const album = await setAlbum(
+        { artistas:artistasArr, nome, genero, preco, publicante },
+        files
+      );
+      EmailNovoAlbum(album, request.session.user);
+      return reply.status(201).send(album);
     }
   );
   fastify.post(
@@ -106,7 +140,7 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
     },
     async (request, reply) => {
       const { params, body } = request;
-      const {id:idUser} = request.session.user
+      const { _id: idUser } = request.session.user;
       if (!idUser) {
         return reply
           .status(401)
@@ -117,27 +151,35 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
     }
   );
 
-  fastify.get("/generos", async (request, reply) => getGeneros())
+  fastify.get("/generos", async (request, reply) => getGeneros());
 
   fastify.put(
     "/albuns/:id",
     {
-      schema:{
-        params:z.object({
-          id:z.string()
+      schema: {
+        params: z.object({
+          id: z.string(),
         }),
-        body:z.object({
-          status:z.boolean()
-        })
+        body: z.object({
+          status: z.boolean(),
+        }),
+      },
+    },
+    async (request, reply) => {
+      if (
+        request.session.user === undefined ||
+        request.session.user.tipo !== "admin"
+      ) {
+        return reply.status(401).send("Acesso negado");
       }
-    },async (request,reply)=>{
-      if ( request.session.user === undefined || request.session.user.tipo !== "admin") {
-       return  reply.status(401).send("Acesso negado");
-      }
-      const {id} = request.params
-      const {status}= request.body
-      await atualizarSituacao(id,status)
-    return  reply.status(200).send("Situação atualizada")
+      const { id } = request.params;
+      const { status } = request.body;
+     
+      const statusRes = await atualizarSituacao(id, status);
+      return reply.status(200).send({
+        status: statusRes,
+        message: "Situação atualizada",
+      });
     }
-  )
+  );
 };

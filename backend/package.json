@@ -7,9 +7,10 @@
   "description": "backend do soundcrack",
   "type": "module",
   "scripts": {
-    "dev": "tsx --env-file=./.env app.ts    ",
+    "test": "tap --node-arg=--env-file=./.env test/ ",
+    "dev": "tsx --env-file=./.env app.ts",
     "watch": "tsx watch  --env-file=./.env app.ts ",
-    "seed": "tsx --env-file=./.env   seed.ts"
+    "seed": "tsx --env-file=./.env clean.ts && tsx --env-file=./.env seed.ts"
   },
   "dependencies": {
     "@fastify/cookie": "^11.0.2",
@@ -25,10 +26,12 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@types/nodemailer": "^6.4.17",
     "@types/bcrypt": "^5.0.2",
     "@types/busboy": "^1.5.4",
-    "@types/node": "^22.10.10",
+    "@types/node": "^22.17.1",
+    "@types/nodemailer": "^6.4.17",
+    "form-data": "^4.0.4",
+    "tap": "^21.1.0",
     "tsx": "^4.19.2"
   }
 }
