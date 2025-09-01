@@ -8,8 +8,8 @@
       }
     ],
     "genero": "indie",
-    "disco": "https://i.scdn.co/image/ab6761610000e5eb0c9c4cb69f64ffc02f563834",
-    "imagem": "https://i.scdn.co/image/ab6761610000e5eb0c9c4cb69f64ffc02f563834",
+    "disco": "https://i.scdn.co/image/ab67616d0000b27326bccc0e2cb311e3bbfed6d2",
+    "imagem": "https://i.scdn.co/image/ab67616d0000b27326bccc0e2cb311e3bbfed6d2",
     "musicas": [
       "espero que goste, ou não",
       "ao que tudo indica, não somos o centro do universo",
@@ -245,10 +245,7 @@
       {
         "nome": "Cebolas",
         "artistas": [
-          {
-            "nome": "supercombo",
-            "imagem": "https://i.scdn.co/image/ab6761610000e5ebb3f80b4c25759ea6d72907b4"
-          },
+          "supercombo",
           {
             "nome": "Lucas Silveira",
             "imagem": "https://i.scdn.co/image/ab6761610000e5eb315683944b3cbd361f46314c"

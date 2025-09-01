@@ -14,7 +14,6 @@ import { ErrorStatus } from "./src/helpers/Error.js";
 
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
-app.decorate("betterClose")
 app.register(fastifyStatic, {
   root: [import.meta.dirname + "/public/", import.meta.dirname + "/dist/"],
   prefix: "/public",
@@ -67,6 +66,7 @@ app.listen({
 app.log.error(e)
 }
 }
+app.decorate("betterClose")
 app.betterClose = (conn:typeof mongoose)=>{
   conn.connection.close().then(()=>{
     console.log("conexão fechada com o banco")

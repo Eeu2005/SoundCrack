@@ -10,7 +10,7 @@
     "test": "tap --node-arg=--env-file=./.env test/ ",
     "dev": "tsx --env-file=./.env app.ts",
     "watch": "tsx watch  --env-file=./.env app.ts ",
-    "seed": "tsx --env-file=./.env   seed.ts"
+    "seed": "tsx --env-file=./.env clean.ts && tsx --env-file=./.env seed.ts"
   },
   "dependencies": {
     "@fastify/cookie": "^11.0.2",

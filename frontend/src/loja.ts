@@ -15,7 +15,7 @@ async function  criarAlbuns () {
     const div = document.createElement("div")
     div.classList.add("album")
     div.innerHTML = `
-    <img src="${album.capa}" alt="${album.nome}">
+    <img src="${import.meta.env.VITE_URLBACKEND}${album.capa}" alt="${album.nome}">
 <h1>${album.nome}</h1>
 <h2>Artistas:${album.artistas.map(e=>e.nome).join("-")}</h2>
 <p>Preço: R$${album.preco}</p>

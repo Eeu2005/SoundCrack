@@ -32,9 +32,10 @@ async function handleRequest(){
     }
 }
 async function mountData() {
+  console.log(axios.defaults)
   const data = await handleRequest()
   const capa = querySelector<HTMLImageElement>("#capa")
-  capa.src=  data!.capa
+  capa.src=  `${axios.defaults.url}/${data!.capa}`
   pegarCor(capa,querySelector("body"))
   const table = querySelector<HTMLTableElement>("tbody")
  for(const musica of data!.musicas){

@@ -1,114 +1,98 @@
-import { connect } from "mongoose";
-import albuns from "./seed/seedAlbuns.json" with {type:"json"};
-import user from "./seed/userSeed.json" with {type:"json"};
-import { modelArtista } from "./src/models/artista.model.js";
-import { get } from "https";
-import { createWriteStream } from "fs";
-import { modelAlbum } from "./src/models/albun.model.js";
+
+import { hashSync } from "bcrypt"
 import { env } from "./env.js"
-import { modelUsers } from "./src/models/users.model.js";
-import { hashSync} from "bcrypt"
-import { emptyDir } from "./src/helpers/emptyDir.js";
-const con =await connect(env.CONN_STR, {
-  dbName: "soundcrack_db",
-});
-console.log("conectado"+ con.connection.name)
-const fetchImage =(imagem:string,caminho:string)=>{
-  const write=  createWriteStream(".".concat(caminho));
-  get(imagem,(res)=>{
-      res.on("readable",()=>{
-        res.read()
-      })
-      res.on("data",(chunk)=>{
-        write.write(chunk)
-      })
-      
-        
-     res.on("error",(err)=>{
-     return err
-     })
-     res.on("close",()=>{
-     
-     })
-     
-  })
+import { downloadImage } from "./seed/downloadImage.js"
+import albuns from "./seed/seedAlbuns.json" with {type:"json"}
+import userSeed from "./seed/userSeed.json" with {type:"json"}
+import { modelAlbum } from "./src/models/albun.model.js"
+import { modelArtista } from "./src/models/artista.model.js"
+import { modelUsers } from "./src/models/users.model.js"
+import type { PropsAlbum } from "./src/types.js"
+import {connect}from"mongoose"
 
-  
+const conn = await connect(env.CONN_STR,{dbName:"soundcrack_db"})
+type artistasType= typeof albuns[number]["artista"]
+type musicasType = typeof albuns[number]["musicas"]
+type artistasFormatType = {nome:string,id:string}
+type musicaType = {nome:string,artistas:string[]}
+
+async function setArtistas(artistas:artistasType):Promise<artistasFormatType[]>{
+  const ids:{nome:string,id:string}[] = []
+  for(const artista of artistas){
+    console.log("inserindo artista "+artista.nome)
+    const path =  await downloadImage(artista.imagem)
+    const artistaSave = new modelArtista({
+      nome:artista.nome,
+      imagem:path
+    })
+    const salvo = await artistaSave.save()
+    ids.push({
+      nome:salvo.nome,
+      id:salvo.id.toString()
+    })
+  }
+
+  return ids
 }
-
-
-
-emptyDir("./public",".gitkeep")
-await Promise.all([modelAlbum.deleteMany().exec(),modelArtista.deleteMany().exec(),modelUsers.deleteMany().exec()])
-
-for (const album of albuns){
-  console.log("começando albun"+album.nome)
-  const artistas =  await Promise.all(album.artista.map(async ar=>{
-  let caminho = "/public/" + Date.now().toString() + ar.nome[3]+"artista.jpeg";
-   fetchImage(ar.imagem,caminho)
-  console.log("criando Artista:"+ar.nome,caminho)
-  return new modelArtista({nome:ar.nome,imagem:caminho}).save()
-}))
-  const caminhoCapa = "/public/" + Date.now().toString() + "capa.jpeg";
-  const caminhoDisco = "/public/" + Date.now().toString() + "disco.jpeg";
-  fetchImage(album.imagem,caminhoCapa)
-  fetchImage(album.disco,caminhoDisco)
-  const musicas = await Promise.all(album.musicas.map(async mus=>{
-    console.log(mus)
-    if(typeof mus === "string"){
-      return {
-        nome:mus,
-        artistas:artistas.map(e=>e._id)
-      }
+async function musicasFormat(musicas:musicasType,artistasIds:artistasFormatType[]):Promise<musicaType[]>{
+  const musicasFormatadas:musicaType[] = []
+  for(const musica of musicas){
+    if(typeof musica=="string"){
+      musicasFormatadas.push({nome:musica,artistas:artistasIds.map(a=>a.id)})
+      continue
     }
-    const artistasFetured = await Promise.all(
-      mus.artistas
-        .filter((e) => typeof e === "object")
-        .map((ar) => {
-          if(!ar?.imagem) return
-          let caminho = "/public/" + Date.now().toString() + "artista.jpeg";
-          fetchImage(ar.imagem,caminho);
-          
-          console.log("criando Artista:" + ar.nome);
-          return new modelArtista({
-            nome: ar.nome,
-            imagem: caminho,
-            aprovado:true
-           }).save();
-        })
-    );
-    artistasFetured.push(...artistas)
-  return {
-    nome: mus.nome,
-    artistas: artistasFetured
-      .filter((a) => typeof a !== "undefined")
-      .map((e) => e._id),
-  };    
-  }))
-   new  modelAlbum({
-  artistas:artistas.map(e=>e._id),
-  nome:album.nome,
-  genero:album.genero,
-  disco:caminhoDisco,
-  capa:caminhoCapa,
-  musicas:musicas,
-  preco:album.preco,
-  aprovado:true
-}).save().then((e)=>{
-  console.log("album criado " +e.nome )
-})
+    const artistasAchados = []
+    for(const artista of musica.artistas){
+      if(typeof artista=="string") {
+        const encontrado = artistasIds.find(a=>a.nome==artista)
+        console.log(encontrado)
+        if(encontrado){
+          artistasAchados.push(encontrado.id)
+          continue
+        }else{
+          throw new Error("Artista não encontrado para a musica "+musica.nome)
+        }
+      }
+      const  newArtistas =  new modelArtista({
+        nome:artista.nome,
+        imagem:await downloadImage(artista.imagem)
+      })
+      const salvo = await newArtistas.save()
+      artistasAchados.push(salvo.id.toString())
+    }
+    musicasFormatadas.push({nome:musica.nome,artistas:artistasAchados})
+  }
+  return musicasFormatadas
 }
-/*--- criando usuario administrador */
+const user = new modelUsers(userSeed)
+for(const album of albuns){
+  console.log("começando album:"+album.nome)
+  let AlbumSave:PropsAlbum&{capa:string,disco:string,aprovado:boolean,musicas:musicaType[]}  ={
+    nome:album.nome,
+    artistas:[],
+    capa:"",
+    disco:"",
+    preco:0,
+    musicas:[],
+    genero:album.genero,
+    aprovado:true,
+    publicante:user.id
+  }
+  const [imagem,disco] = await Promise.all([
+    downloadImage(album.imagem),
+    downloadImage(album.disco)
+  ])
+  const artistasIds = await setArtistas(album.artista)
+  const musicas = await musicasFormat(album.musicas,artistasIds)
+  AlbumSave.musicas = musicas
+  AlbumSave.capa=imagem
+  AlbumSave.disco=disco
+  AlbumSave.artistas=artistasIds.map(a=>a.id)
+  AlbumSave.preco=Number((Math.random()*10).toFixed(2))
+  await new  modelAlbum({
+    senha:hashSync(user.senha,env.SALT),
+    ...AlbumSave
+  }).save()
+}
 
-modelUsers.insertOne({
-  email:user.email,
-  nome:user.nome,
-  senha:hashSync(user.senha,env.SALT),
-  tipo:user.tipo
-}).then((e)=>{
-console.log("usuario administrador criado")
-console.log(user);
-con.connection.close()
-})
-
-
+conn.connection.close()
