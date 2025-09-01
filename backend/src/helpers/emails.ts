@@ -2,7 +2,7 @@ import nodemailer from "nodemailer"
 import type {SendMailOptions} from "nodemailer"
 import { env } from "../../env.js"
 import type { Album, User } from "../types.js";
-const tranponder = env.EM_TESTE
+const tranponder = !env.EM_TESTE
   ? nodemailer.createTransport({
       host: env.MAILHOST,
       port: 2525,
