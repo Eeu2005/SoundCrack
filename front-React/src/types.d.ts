@@ -15,6 +15,12 @@ export interface AlbumRes {
     artistas: { nome: string; imagem: string }[];
   }[];
 }
+
+interface User{
+  username:string,
+  email:string
+}
+
 declare global {
   namespace React {
     interface CSSProperties {

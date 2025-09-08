@@ -8,7 +8,9 @@
 }
 @theme{
   --color-background:#000000;
-  --color-Secundaria: #004AAD;
+  --color-light-background:#191c20;
+  --color-Secundaria: #DF9200
+  ;
     --color-Primaria: #ffb11e;
   --font-ribeye:"Ribeye", "circular";
   --font-circular:"circular";
@@ -62,7 +64,7 @@
   min-height: 100vh;
   overflow-x: hidden;
     font-family: Circular,sans-serif;
-    background: #31373f
+    background: var(--color-light-background)
 }
 
 @theme inline {
@@ -105,7 +107,7 @@
 
 :root {
     --radius: 0.625rem;
-    --background: oklch(1 0 0);
+    --background: #000000;
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.145 0 0);

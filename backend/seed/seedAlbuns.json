@@ -218,12 +218,12 @@
     "disco": "https://i.scdn.co/image/ab67616d0000b2735011018cca4aa7091e08ae93"
   },
   {
-    "nome": "supercombo",
+    "nome": "Supercombo",
     "genero": "Rock",
     "preco": 60.0,
     "artista": [
       {
-        "nome": "supercombo",
+        "nome": "Supercombo",
         "imagem": "https://i.scdn.co/image/ab6761610000e5ebb3f80b4c25759ea6d72907b4"
       }
     ],
@@ -232,20 +232,20 @@
     "musicas": [
       {
         "nome": "Farol",
-        "artistas": ["supercombo"]
+        "artistas": ["Supercombo"]
       },
       {
         "nome": "Saudade",
-        "artistas": ["supercombo"]
+        "artistas": ["Supercombo"]
       },
       {
         "nome": "Gravidade",
-        "artistas": ["supercombo"]
+        "artistas": ["Supercombo"]
       },
       {
         "nome": "Cebolas",
         "artistas": [
-          "supercombo",
+          "Supercombo",
           {
             "nome": "Lucas Silveira",
             "imagem": "https://i.scdn.co/image/ab6761610000e5eb315683944b3cbd361f46314c"
@@ -254,34 +254,16 @@
       },
       {
         "nome": "Café Amargo",
-        "artistas": ["supercombo"]
+        "artistas": ["Supercombo"]
       },
       {
         "nome": "Labirintite",
-        "artistas": ["supercombo"]
+        "artistas": ["Supercombo"]
       },
       {
         "nome": "Sorte e Azar",
-        "artistas": ["supercombo"]
+        "artistas": ["Supercombo"]
       }
     ]
-  },
-  {
-    "nome": "Gatuno",
-    "genero": "Bommbap",
-    "preco": 70.0,
-    "artista": [
-      {
-        "nome": "alec'",
-        "imagem": "https://i.scdn.co/image/ab6761610000e5eb8f1ee078a04efcbc52ea882b"
-      },
-      {
-        "nome": "sazack",
-        "imagem": "https://i.scdn.co/image/ab6761610000e5eb87570157fc84594fb9be8bd6"
-      }
-    ],
-    "disco": "https://i.scdn.co/image/ab67616d0000b27394d936c326991bb5f3f1594d",
-    "imagem": "https://i.scdn.co/image/ab67616d0000b27394d936c326991bb5f3f1594d",
-    "musicas": ["Gatuno"]
   }
 ]

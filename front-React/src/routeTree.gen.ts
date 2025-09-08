@@ -9,13 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as CadastroRouteImport } from './routes/cadastro'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AlbumIdAlbumRouteImport } from './routes/album.$idAlbum'
 
-const CadastroRoute = CadastroRouteImport.update({
-  id: '/cadastro',
-  path: '/cadastro',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,41 +31,41 @@ const AlbumIdAlbumRoute = AlbumIdAlbumRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/cadastro': typeof CadastroRoute
+  '/login': typeof LoginRoute
   '/album/$idAlbum': typeof AlbumIdAlbumRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/cadastro': typeof CadastroRoute
+  '/login': typeof LoginRoute
   '/album/$idAlbum': typeof AlbumIdAlbumRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/cadastro': typeof CadastroRoute
+  '/login': typeof LoginRoute
   '/album/$idAlbum': typeof AlbumIdAlbumRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cadastro' | '/album/$idAlbum'
+  fullPaths: '/' | '/login' | '/album/$idAlbum'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cadastro' | '/album/$idAlbum'
-  id: '__root__' | '/' | '/cadastro' | '/album/$idAlbum'
+  to: '/' | '/login' | '/album/$idAlbum'
+  id: '__root__' | '/' | '/login' | '/album/$idAlbum'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CadastroRoute: typeof CadastroRoute
+  LoginRoute: typeof LoginRoute
   AlbumIdAlbumRoute: typeof AlbumIdAlbumRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/cadastro': {
-      id: '/cadastro'
-      path: '/cadastro'
-      fullPath: '/cadastro'
-      preLoaderRoute: typeof CadastroRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,7 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CadastroRoute: CadastroRoute,
+  LoginRoute: LoginRoute,
   AlbumIdAlbumRoute: AlbumIdAlbumRoute,
 }
 export const routeTree = rootRouteImport

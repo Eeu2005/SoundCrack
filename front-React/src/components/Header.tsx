@@ -1,6 +1,19 @@
-import { Link } from '@tanstack/react-router'
+import { Consts } from "@/env";
+import type { User } from "@/types.js";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { Link } from "@tanstack/react-router";
 
 export default function Header() {
+  const { data } = useQuery({
+    queryKey: ["user"],
+    queryFn: async () => {
+      const res = await fetch(`${Consts.BASE_URL}/login`, {
+        credentials: "same-origin",
+      });
+      const data = (await res.json()) as User;
+      return data;
+    },
+  });
   return (
     <header className="bg-background text-Primaria flex justify-evenly">
       <div className="pt-1.5 pb-1.5 flex flex-col items-center justify-center">
@@ -14,11 +27,10 @@ export default function Header() {
         <Link to="/">
           <p className="">Sobre</p>
         </Link>
-        <Link to="/cadastro">
-          <p className="">
-            Cadastro
-          </p>
+        <Link to="/login">
+          <p className="">login</p>
         </Link>
+        {data && <p>{data.username}</p>}
       </nav>
     </header>
   );

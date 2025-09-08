@@ -1,4 +1,11 @@
 {
+    "github.copilot.enable": {
+      "*": false,
+     
+      "plaintext": false,
+      "markdown": false,
+      "scminput": false
+    },
   "files.watcherExclude": {
     "**/routeTree.gen.ts": true
   },

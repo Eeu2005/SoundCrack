@@ -88,7 +88,7 @@ for(const album of albuns){
   AlbumSave.capa=imagem
   AlbumSave.disco=disco
   AlbumSave.artistas=artistasIds.map(a=>a.id)
-  AlbumSave.preco=Number((Math.random()*10).toFixed(2))
+  AlbumSave.preco=album.preco
   await new  modelAlbum({
     senha:hashSync(user.senha,env.SALT),
     ...AlbumSave

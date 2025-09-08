@@ -43,7 +43,9 @@ app.setSerializerCompiler(serializerCompiler)
 app.register(RouteArtistas)
 app.register(RouteAlbuns)
 app.register(UsersRoute)
-
+app.post("/ping",async e=>{
+  return e.body
+})
 if(import.meta.main){
 
 try {

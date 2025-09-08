@@ -1,12 +1,10 @@
 // import { getColor } from "@/integrations/colorThief.ts";
-import { Consts } from "@/const.ts";
+import { Consts } from "@/env.ts";
 import type { AlbumType } from "@/types.d.ts";
 import { Link } from "@tanstack/react-router";
 import { Skeleton } from "./ui/skeleton.tsx";
 
-
 export async function Album(album: AlbumType) {
-
   return (
     <div
       style={{ "--corAlbum": `${album.corAlbum}` }}
@@ -41,7 +39,7 @@ export async function Album(album: AlbumType) {
   );
 }
 
-export function CardSkeleton(){
+export function CardSkeleton() {
   return (
     <div className=" self-start justify-self-start bg-gradient-to-t from-background to-Primaria shadow-[0_1px_2px_4px_rgba(0,0,0,0.16)] flex flex-col gap-0.5 justify-evenly items-center bg-background e h-[385px] w-[310px]">
       <Skeleton className="w-[78%]  h-[204px]" />
