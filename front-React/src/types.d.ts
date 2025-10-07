@@ -16,9 +16,10 @@ export interface AlbumRes {
   }[];
 }
 
-interface User{
-  username:string,
-  email:string
+interface User {
+  nome: string;
+  email: string;
+  tipo: "padrao" | "admin";
 }
 
 declare global {

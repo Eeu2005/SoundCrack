@@ -46,7 +46,10 @@ export const UsersRoute: FastifyPluginAsyncZod = async (fastify) => {
       return reply.status(201).send("Logado")
     }
   );
-
+ fastify.delete("/logout",async(req,res)=>{
+  await req.session.destroy()
+  return res.status(200).send("deslogado")
+ })
   fastify.get("/login", async (req, res) => {
     if (!req.session.user) {
       return res.status(401).send("não logado");

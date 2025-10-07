@@ -1,17 +1,16 @@
 // import { getColor } from "@/integrations/colorThief.ts";
-import { Consts } from "@/env.ts";
 import type { AlbumType } from "@/types.d.ts";
 import { Link } from "@tanstack/react-router";
 import { Skeleton } from "./ui/skeleton.tsx";
 
-export async function Album(album: AlbumType) {
+export  function Album(album: AlbumType) {
   return (
     <div
       style={{ "--corAlbum": `${album.corAlbum}` }}
       className="mt-8 p-2.5 text-white flex flex-col justify-center items-center w-[310px] rounded-2xl bg-gradient-to-t from-background to-[var(--corAlbum)] shadow-[0_1px_2px_4px_rgba(0,0,0,0.16)] transition-all duration-2000"
     >
       <img
-        src={Consts.BASE_URL + album.capa}
+        src={album.capa}
         alt={album.nome}
         crossOrigin="anonymous"
         className="shadow-[0_0_20px_0_var(--corAlbum)] w-[70%]"

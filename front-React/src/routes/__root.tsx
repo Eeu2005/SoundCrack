@@ -7,6 +7,7 @@ import TanStackQueryLayout from '../integrations/tanstack-query/layout.tsx'
 
 import type { QueryClient } from '@tanstack/react-query'
 import Footer from '@/components/footer.tsx'
+import { Toaster } from '@/components/ui/sonner.tsx'
 
 interface MyRouterContext {
   queryClient: QueryClient
@@ -19,8 +20,8 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       <Header />
       <Outlet />
       <Footer />
-      {/* <TanStackRouterDevtools />
-      <TanStackQueryLayout /> */}
+      <TanStackRouterDevtools />
+      <TanStackQueryLayout />
     </>
   ),
 });

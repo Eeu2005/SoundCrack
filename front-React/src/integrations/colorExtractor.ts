@@ -1,7 +1,7 @@
 import { Consts } from "@/env";
 import { extractColorsFromSrc } from "extract-colors";
 export async function colorExtract(capa: string) {
-  const e = await extractColorsFromSrc(Consts.BASE_URL + capa, {
+  const e = await extractColorsFromSrc(capa, {
     pixels: 80000,
     distance: 0.0,
     hueDistance: 0.55,

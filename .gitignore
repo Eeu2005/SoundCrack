@@ -1,5 +1,5 @@
 .tap/
-*/node_modules
+node_modules
 */.env
 /backend/public/*
 !/backend/public/.gitkeep

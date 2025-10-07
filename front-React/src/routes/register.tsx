@@ -1,17 +1,18 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useForm } from "@tanstack/react-form";
+
 import z from "zod";
 import { PassWordInput, TextInput } from "@/components/Inputs.tsx";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { login } from "@/http/User.ts";
+import { register } from "@/http/User.ts";
 import { toast } from "sonner";
-
-export const Route = createFileRoute("/login")({
+export const Route = createFileRoute("/register")({
   component: RouteComponent,
 });
 
 const schema = z.object({
   email: z.string().email("Isso não se parece com um email"),
+  nome: z.string().min(5, "Vamos la você consegue ser mais criativo"),
   senha: z.string().min(5, "A senha deve conter pelo menos 5 caracteres"),
 });
 
@@ -20,15 +21,16 @@ function RouteComponent() {
   const client = useQueryClient();
   const { mutateAsync } = useMutation({
     mutationKey: ["login"],
-    mutationFn: login,
+    mutationFn: register,
   });
   const form = useForm({
-    defaultValues: { email: "", senha: "" },
+    defaultValues: { nome: "", email: "", senha: "" },
+
     validators: {
       onSubmit: schema,
     },
     onSubmit: async ({ value }) => {
-      const data = await mutateAsync(value);
+     const data =  await mutateAsync(value);
       client.invalidateQueries({ queryKey: ["user"] });
       toast.success(data)
       nav({ to: "/" });
@@ -37,7 +39,7 @@ function RouteComponent() {
   return (
     <main className="flex items-center-safe flex-col gap-7 justify-between ">
       <h1 className="text-4xl text-Primaria ">
-        Login no <span className="font-ribeye">SoundCrack</span>
+        Registra-se no <span className="font-ribeye">SoundCrack</span>
       </h1>
       <form
         encType="multpart/form-data"
@@ -48,6 +50,17 @@ function RouteComponent() {
         action=""
         className="bg-background flex flex-col gap-1.5 p-5"
       >
+        <form.Field
+          name="nome"
+          children={(field) => (
+            <TextInput
+              name={field.name}
+              onChange={(e) => field.setValue(e.target.value)}
+              label="Insira um apelido"
+              ErrorMap={field.state.meta.errors.map((err) => err?.message)}
+            />
+          )}
+        />
         <form.Field
           name="email"
           children={(field) => (
@@ -65,7 +78,7 @@ function RouteComponent() {
             <PassWordInput
               name={field.name}
               onChange={(e) => field.setValue(e.target.value)}
-              label="Digite sua senha"
+              label="Crie uma senha"
               ErrorMap={field.state.meta.errors.map((err) => err?.message)}
             />
           )}
@@ -73,13 +86,11 @@ function RouteComponent() {
         <input
           className="bg-Primaria rounded-4xl  text-black hover:bg-black  hover:text-Secundaria"
           type="submit"
-          value="Entrar"
+          value="Enviar"
         />
       </form>
-      <Link to="/register">
-        <p className="text-Primaria text-2xl">
-          Não possui conta? Clique para se registrar
-        </p>
+      <Link to="/login">
+          <p className="text-Primaria text-2xl">Já possui Login? clique para logar com sua conta</p>
       </Link>
     </main>
   );

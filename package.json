@@ -1,0 +1,29 @@
+{
+  "name": "soundcrack",
+  "version": "1.0.0",
+  "description": "Soundcrack é um projeto full-stack de um e-commerce de discos de músicas. Ele é composto por um frontend desenvolvido com Vite e TypeScript, e um backend utilizando Fastify e MongoDB.",
+  "main": "index.js",
+  "scripts": {
+    "compose": "cd backend&& docker-compose up -d",
+    "install:back": "cd backend && npm ci && docker-compose up -d ",
+    "install:front": "cd front-React && npm ci",
+    "install": "npm run install:back && npm run install:front",
+    "dev:back": "cd backend && docker-compose up -d && npm run dev ",
+    "dev:front": "cd front-React && npm run dev",
+    "dev": "concurrently -c green,blue  --names back,front \"npm run dev:back\" \"npm run dev:front\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eeu2005/SoundCrack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eeu2005/SoundCrack/issues"
+  },
+  "homepage": "https://github.com/Eeu2005/SoundCrack#readme",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

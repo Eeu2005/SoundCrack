@@ -27,9 +27,10 @@ app.register(fastifySession, {
   secret: "SoundcrackSoundcrackSoundcrackSoundcrackSoundcrack",
   
 });
-app.register(fastifyCors,{
-  origin:"*"
-})
+app.register(fastifyCors, {
+  credentials: true,
+  origin: "http://localhost:3000",
+});
 app.register(fastifyMultipart,{
   attachFieldsToBody:"keyValues",
   async onFile(part) {
@@ -44,7 +45,10 @@ app.register(RouteArtistas)
 app.register(RouteAlbuns)
 app.register(UsersRoute)
 app.post("/ping",async e=>{
-  return e.body
+  console.log(`url:${e.url}\nmethod:${e.method}\n`)
+  console.log("body")
+  console.log(e.body)
+  return "Pingado"
 })
 if(import.meta.main){
 

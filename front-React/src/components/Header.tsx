@@ -1,19 +1,27 @@
-import { Consts } from "@/env";
-import type { User } from "@/types.js";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { OptsDeslogar, OptsGetUser } from "@/http/User";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
+import { toast } from "sonner";
 
 export default function Header() {
-  const { data } = useQuery({
-    queryKey: ["user"],
-    queryFn: async () => {
-      const res = await fetch(`${Consts.BASE_URL}/login`, {
-        credentials: "same-origin",
-      });
-      const data = (await res.json()) as User;
-      return data;
-    },
-  });
+  const client = useQueryClient()
+  let  { data } = useQuery(OptsGetUser);
+  const {mutate} = useMutation(OptsDeslogar)
+  function deslogar(): React.MouseEventHandler<HTMLButtonElement> | undefined {
+      return () => {
+          mutate({}, {
+              onSuccess(res, _, context) {
+                  console.log(context);
+                  toast.success(res);
+                  data = undefined;
+                  client.invalidateQueries(OptsGetUser);
+                  location.reload();
+              },
+          });
+      };
+  }
+
+  
   return (
     <header className="bg-background text-Primaria flex justify-evenly">
       <div className="pt-1.5 pb-1.5 flex flex-col items-center justify-center">
@@ -27,10 +35,18 @@ export default function Header() {
         <Link to="/">
           <p className="">Sobre</p>
         </Link>
-        <Link to="/login">
+        {!data?(
+          <Link to="/login">
           <p className="">login</p>
         </Link>
-        {data && <p>{data.username}</p>}
+        ):<button onClick={deslogar()}>
+            <p>Deslogar</p>
+          </button>}
+        {data&&(
+          <Link to="/user">
+            <p>{data.nome}</p>
+          </Link>
+        )}
       </nav>
     </header>
   );

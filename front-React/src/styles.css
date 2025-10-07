@@ -7,6 +7,7 @@
     src: url("/Ribeye-Regular.ttf") ;
 }
 @theme{
+  --shadow-toast:5px 4px 1.4px;
   --color-background:#000000;
   --color-light-background:#191c20;
   --color-Secundaria: #DF9200
@@ -19,6 +20,19 @@
     font-family: Circular;
     src: url(/CircularSp-Book.woff2) format(woff2);
 
+}
+
+
+
+.no-spin::-webkit-outer-spin-button,
+.no-spin::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.no-spin {
+  appearance: textfield;
+  -webkit-appearance: textfield;
+    -moz-appearance: textfield;
 }
 ::-webkit-scrollbar {
     width: 1px;

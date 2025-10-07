@@ -9,7 +9,7 @@ export async function getArtistas(): Promise<Artista[]> {
 }
 
 export async function searchArtist(name: string) {
-  const regex = new RegExp(`^${name}`);
+  const regex = new RegExp(`^${name}`,"i");
   const artista = await modelArtista.find({ nome: regex }).select("nome imagem");
   return artista;
 }

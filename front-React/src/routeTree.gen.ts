@@ -9,10 +9,28 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UserRouteImport } from './routes/user'
+import { Route as RegistroAlbumRouteImport } from './routes/registroAlbum'
+import { Route as RegisterRouteImport } from './routes/register'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AlbumIdAlbumRouteImport } from './routes/album.$idAlbum'
 
+const UserRoute = UserRouteImport.update({
+  id: '/user',
+  path: '/user',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegistroAlbumRoute = RegistroAlbumRouteImport.update({
+  id: '/registroAlbum',
+  path: '/registroAlbum',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -32,35 +50,87 @@ const AlbumIdAlbumRoute = AlbumIdAlbumRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/registroAlbum': typeof RegistroAlbumRoute
+  '/user': typeof UserRoute
   '/album/$idAlbum': typeof AlbumIdAlbumRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/registroAlbum': typeof RegistroAlbumRoute
+  '/user': typeof UserRoute
   '/album/$idAlbum': typeof AlbumIdAlbumRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/registroAlbum': typeof RegistroAlbumRoute
+  '/user': typeof UserRoute
   '/album/$idAlbum': typeof AlbumIdAlbumRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/album/$idAlbum'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/registroAlbum'
+    | '/user'
+    | '/album/$idAlbum'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/album/$idAlbum'
-  id: '__root__' | '/' | '/login' | '/album/$idAlbum'
+  to:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/registroAlbum'
+    | '/user'
+    | '/album/$idAlbum'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/register'
+    | '/registroAlbum'
+    | '/user'
+    | '/album/$idAlbum'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
+  RegisterRoute: typeof RegisterRoute
+  RegistroAlbumRoute: typeof RegistroAlbumRoute
+  UserRoute: typeof UserRoute
   AlbumIdAlbumRoute: typeof AlbumIdAlbumRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/user': {
+      id: '/user'
+      path: '/user'
+      fullPath: '/user'
+      preLoaderRoute: typeof UserRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/registroAlbum': {
+      id: '/registroAlbum'
+      path: '/registroAlbum'
+      fullPath: '/registroAlbum'
+      preLoaderRoute: typeof RegistroAlbumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -88,6 +158,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
+  RegisterRoute: RegisterRoute,
+  RegistroAlbumRoute: RegistroAlbumRoute,
+  UserRoute: UserRoute,
   AlbumIdAlbumRoute: AlbumIdAlbumRoute,
 }
 export const routeTree = rootRouteImport

@@ -1,8 +1,6 @@
 import { TabelaDeMusica } from "@/components/Table.tsx";
-import { Consts } from "@/env";
 import { getAlbum } from "@/http/getAlbuns.ts";
 import type { AlbumType } from "@/types.js";
-import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/album/$idAlbum")({
@@ -30,7 +28,7 @@ function Page(album: AlbumType) {
       <div className="w-[40%]  p-[50px]">
         <img
           className="rounded-3xl"
-          src={Consts.BASE_URL + album.capa}
+          src={album.capa}
           alt=""
         />
       </div>
@@ -40,24 +38,8 @@ function Page(album: AlbumType) {
 }
 
 function RouteComponent() {
-  const { idAlbum } = Route.useParams();
-  const { data, status } = useQuery({
-    queryKey: ["album", idAlbum],
-    queryFn: () => {
-      return getAlbum(idAlbum);
-    },
-  });
-  const Loading = () => {
-    switch (status) {
-      case "success":
-        return <Page {...data} />;
-        break;
-      case "error":
-        return <p>Erro</p>;
-        break;
-      case "pending":
-        return <p>Carregando</p>;
-    }
-  };
-  return <Loading />;
+  const data = Route.useLoaderData();
+  
+  
+  return <Page {...data}/>;
 }
