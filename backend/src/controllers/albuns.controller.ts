@@ -4,7 +4,6 @@ import type {
   FileProps,
   Musica,
   PropsAlbum,
-  User,
 } from "../types.js";
 import { modelArtista } from "../models/artista.model.js";
 import { fazerArquivo } from "../helpers/fazerArquivo.js";
@@ -22,37 +21,35 @@ const padrao: pagination = {
   per_page: 10,
 };
 
-export async function getAlbumAdmin({ page, per_page }: pagination = padrao) {
+
+export async function getAlbum(
+  { page, per_page }: pagination = padrao,
+  isAdmin = false
+) {
+  const busca = isAdmin ? {} : { aprovado: true };
   const album = await modelAlbum
-    .find<AlbumPopulado>({})
-    .skip(per_page * page)
-    .limit(page);
-  return album;
-}
-export async function getOneAlbumAdmin(id: string): Promise<AlbumPopulado> {
-  const album = await modelAlbum
-    .findById<AlbumPopulado>(id)
-    .populate("musicas.artistas");
-  if (!album) throw new ErrorStatus("Album não encontrado",404);
-  return album;
-}
-export async function getAlbum({
-  page,
-  per_page,
-}: pagination = padrao): Promise<AlbumPopulado[]> {
-  const album = await modelAlbum
-    .find<AlbumPopulado>({ aprovado: true })
+    .find<AlbumPopulado>(busca)
     .limit(per_page)
+    
     .skip(per_page * (page - 1));
-  return album;
+  const total = await modelAlbum.countDocuments(busca);
+  if (album.length === 0) throw new ErrorStatus("Nenhum album encontrado", 404);
+  return {
+    data: album,
+    pagina: page,
+    quantidade_pagina: per_page,
+    total,
+  };
 }
-export async function getOneAlbum(id: string): Promise<AlbumPopulado> {
-  const busca =  { _id: id};
+export async function getOneAlbum(
+  id: string,
+  isAdmin = false
+): Promise<AlbumPopulado> {
+  const busca = { _id: id, ...(isAdmin ? {} : { aprovado: true }) };
   const album = await modelAlbum
     .findOne<AlbumPopulado>(busca)
     .populate("musicas.artistas");
-  if (!album ) throw new ErrorStatus("Album não encontrado",404);
-  if (!album.aprovado) throw new ErrorStatus("Album esta para em Análise",401);
+  if (!album) throw new ErrorStatus("Album não encontrado", 404);
   return album;
 }
 
@@ -74,6 +71,7 @@ export async function getRandonAlbum(): Promise<AlbumPopulado> {
     },
     { $sample: { size: 1 } },
   ]);
+  
 
   return album[0];
 }
@@ -109,7 +107,7 @@ export async function putMusic(musicas: Musica[], id: string, userId: string) {
   if(!isValidObjectId(id)|| !isValidObjectId(userId)) throw new ErrorStatus("id invalido",400)
   const album = await modelAlbum.findOne({ _id: id, publicante: userId });
   if (!album) {
-    throw new Error("Album não encontrado");
+    throw new ErrorStatus("Album não encontrado",404);
   }
   album.depopulate("artistas");
   for (const musica of musicas) {

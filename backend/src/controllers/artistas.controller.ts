@@ -18,7 +18,8 @@ export async function getOneArtista(id: string): Promise<Artista> {
   if (!artista) {
     throw new ErrorStatus("Artista não encontrado",404);
   }
-  const albuns = await modelAlbum.find({ artistas: artista._id });
+  const albuns = await modelAlbum.find({ artistas: id})
+  .select("nome capa artistas");
   let albumArtistas = Object.assign(artista.toObject(), { albuns });
   return albumArtistas;
 }

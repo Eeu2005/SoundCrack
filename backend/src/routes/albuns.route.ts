@@ -6,9 +6,7 @@ import {
   putMusic,
   setAlbum,
   getGeneros,
-  getAlbumAdmin,
   atualizarSituacao,
-  getOneAlbumAdmin,
   searchAlbum,
 } from "../controllers/albuns.controller.js";
 import { z } from "zod";
@@ -32,14 +30,14 @@ export const RouteAlbuns: FastifyPluginAsyncZod = async (fastify) => {
     },
     async (request, reply) => {
       const { query } = request;
+      let admin =false
       if (
         request.session.user !== undefined &&
         request.session.user.tipo === "admin"
       ) {
-        const albuns = await getAlbumAdmin(query);
-        return albuns;
+        admin = true
       }
-      const albuns = await getAlbum(query);
+      const albuns = await getAlbum(query,admin);
       return albuns;
     }
   );
@@ -71,15 +69,14 @@ fastify.get(
     async (request, reply) => {
       const { id } = request.params;
       let album: AlbumPopulado;
-
+      let admin =false
       if (
         request.session.user !== undefined &&
         request.session.user.tipo === "admin"
       ) {
-        album = await getOneAlbumAdmin(id);
-      } else {
-        album = await getOneAlbum(id);
-      }
+        admin = true
+      } 
+      album = await getOneAlbum(id,admin);
       return album;
     }
   );

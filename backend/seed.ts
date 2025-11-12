@@ -64,7 +64,7 @@ async function musicasFormat(musicas:musicasType,artistasIds:artistasFormatType[
   }
   return musicasFormatadas
 }
-const user = new modelUsers(userSeed)
+const user = await new modelUsers(userSeed).save()
 for(const album of albuns){
   console.log("começando album:"+album.nome)
   let AlbumSave:PropsAlbum&{capa:string,disco:string,aprovado:boolean,musicas:musicaType[]}  ={
