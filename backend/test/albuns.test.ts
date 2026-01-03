@@ -194,8 +194,8 @@ t.test("Pegando musica antes de ser aprovado",async(t)=>{
     path:`/albuns/${idAlbum}`,
     cookies:cookiePadrao,
   })
-  t.equal(res.statusCode,401)
-  t.equal(res.json().message,"Album esta para em Análise")
+  t.equal(res.statusCode,404)
+  t.equal(res.json().message,"Album não encontrado")
 })  
 t.test("Pegando musica antes de ser aprovado mas sendo admin",async(t)=>{
   const res = await app.inject({
@@ -310,9 +310,9 @@ t.matchOnlyStrict(res.json()[0],
 
 
 
-t.teardown(()=>{
+t.teardown(async()=>{
   modelUsers.deleteMany()
- Promise.all([ 
+ await Promise.all([ 
   promises.unlink(artistaImage),
   promises.unlink(capaImage),
   promises.unlink(discoImage)])
