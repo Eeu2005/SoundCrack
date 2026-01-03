@@ -1,17 +1,17 @@
-import type { AlbumPopulado } from "./types";
+import type { AlbumPopulado, Resposta } from "./types";
 import { axios } from "./utils/axios";
 import { pegarCor } from "./utils/color-thief";
 import { querySelector } from "./utils/querySelector";
 async function fetchAlbuns (){
-  const albuns = (await axios.get<AlbumPopulado[]>("/albuns")).data
+  const albuns = ( await axios.get<Resposta<AlbumPopulado[]>>("/albuns")).data
   return albuns
 }
 
 async function  criarAlbuns () {
-  const albuns= await fetchAlbuns()
+  const res= await fetchAlbuns()
   const main =querySelector<HTMLDivElement>("main")
  
-  for(const album of albuns){
+  for(const album of res.data){
     const div = document.createElement("div")
     div.classList.add("album")
     div.innerHTML = `

@@ -1,6 +1,6 @@
 import fastify from "fastify";
 import fastifyCookie from "@fastify/cookie";
-import fastifySession from "@fastify/session";
+import fastifySession from "@fastify/session"
 import { env } from "./env.js";
 import { serializerCompiler, validatorCompiler, type ZodTypeProvider } from "fastify-type-provider-zod";
 import mongoose, { connect } from "mongoose";
@@ -15,9 +15,14 @@ import { ErrorStatus } from "./src/helpers/Error.js";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 app.register(fastifyStatic, {
-  root: [import.meta.dirname + "/public/", import.meta.dirname + "/dist/"],
+  root: [import.meta.dirname + "/public/",],
   prefix: "/public",
 });
+app.register(fastifyStatic, {
+  root: [import.meta.dirname + "/dist/"],
+  prefix: "/",
+  decorateReply:false,
+})
 app.register(fastifyCookie,{  
 });
 app.register(fastifySession, {
@@ -43,7 +48,9 @@ app.setSerializerCompiler(serializerCompiler)
 app.register(RouteArtistas)
 app.register(RouteAlbuns)
 app.register(UsersRoute)
-
+app.get("/", async (req, res) => {
+  res.sendFile("pages/loja.html");
+})
 if(import.meta.main){
 
 try {

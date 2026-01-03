@@ -7,7 +7,7 @@ const func = (file)=> resolve(__dirname,"pages",file+".html")
 export default defineConfig({
   plugins: [],
   appType: "mpa",
-  base:"/public",
+  base:"/",
   build: {
     rollupOptions: {
       input: [

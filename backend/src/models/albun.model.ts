@@ -53,7 +53,7 @@ export const AlbumSchema = new mongoose.Schema({
 AlbumSchema.pre("find",function(){
 this.populate("artistas",["nome","imagem"])
 })
-AlbumSchema.pre("findOne", function () {
-  this.populate("artistas", "nome");
-});
+// AlbumSchema.pre("findOne", function () {
+//   this.populate("artistas", "nome");
+// });
 export const modelAlbum = mongoose.model<Album>("albuns", AlbumSchema);

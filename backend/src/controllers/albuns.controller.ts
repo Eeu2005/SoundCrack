@@ -5,9 +5,10 @@ import type {
   Musica,
   PropsAlbum,
 } from "../types.js";
+import { Types } from "mongoose";
 import { modelArtista } from "../models/artista.model.js";
 import { fazerArquivo } from "../helpers/fazerArquivo.js";
-import { isValidObjectId, Types } from "mongoose";
+import { isValidObjectId, model, Types } from "mongoose";
 import { modelUsers } from "../models/users.model.js";
 import { emailStatusAlbum, } from "../helpers/emails.js";
 import { ErrorStatus } from "../helpers/Error.js";
@@ -95,7 +96,7 @@ export async function setAlbum(album: PropsAlbum, files: FileProps[]) {
   return await new modelAlbum({
     preco: album.preco,
     nome: album.nome,
-    artistas: album.artistas,
+    artistas: album.artistas.map(e=>new Types.ObjectId(e)),
     genero: album.genero,
     capa: capaCaminho,
     disco: discoCaminho,

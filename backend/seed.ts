@@ -8,7 +8,7 @@ import { modelAlbum } from "./src/models/albun.model.js"
 import { modelArtista } from "./src/models/artista.model.js"
 import { modelUsers } from "./src/models/users.model.js"
 import type { PropsAlbum } from "./src/types.js"
-import {connect}from"mongoose"
+import {connect, Types}from"mongoose"
 
 const conn = await connect(env.CONN_STR,{dbName:"soundcrack_db"})
 type artistasType= typeof albuns[number]["artista"]
@@ -87,10 +87,9 @@ for(const album of albuns){
   AlbumSave.musicas = musicas
   AlbumSave.capa=imagem
   AlbumSave.disco=disco
-  AlbumSave.artistas=artistasIds.map(a=>a.id)
+  AlbumSave.artistas=artistasIds.map(a=>new Types.ObjectId(a.id)) as unknown as string[]
   AlbumSave.preco=Number((Math.random()*10).toFixed(2))
-  await new  modelAlbum({
-    senha:hashSync(user.senha,env.SALT),
+  await new  modelAlbum({ 
     ...AlbumSave
   }).save()
 }

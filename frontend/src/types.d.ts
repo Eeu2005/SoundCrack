@@ -48,3 +48,9 @@ interface User {
   senha: string;
   albuns: Id[];
 }
+interface Resposta<T>{
+  data: T,
+  pagina: number,
+  quantidade_pagina: number,
+  total:number
+}
